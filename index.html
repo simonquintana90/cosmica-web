@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Páginas Web | Cósmica</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    
+    <!-- Enlace al archivo CSS externo -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    
+    <!-- MODAL DEL FORMULARIO DE CONTACTO -->
+    <div class="form-modal-overlay">
+        <div class="form-container">
+            <button class="form-close-btn">
+                <iconify-icon icon="ph:x-bold"></iconify-icon>
+            </button>
+            <h3>Hablemos de tu proyecto</h3>
+            <p>Completa el formulario y te contactaremos pronto.</p>
+            
+            <form id="contact-form" action="https://formspree.io/f/xvgqdvyg" method="POST">
+                <div class="form-group">
+                    <label for="name">Nombre</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="lastname">Apellido</label>
+                    <input type="text" id="lastname" name="lastname" required>
+                </div>
+                <div class="form-group">
+                    <label for="whatsapp">WhatsApp</label>
+                    <input type="tel" id="whatsapp" name="whatsapp" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <!-- CAMPO SIMPLIFICADO PARA LANDING PAGES -->
+                <div class="form-group">
+                    <label for="additional-lps">¿Necesitas Landing Pages adicionales?</label>
+                    <select id="additional-lps" name="landing_pages_adicionales">
+                        <option value="No">No</option>
+                        <option value="Sí">Sí</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="form-submit-btn">Enviar Mensaje</button>
+            </form>
+            <div id="form-status"></div>
+        </div>
+    </div>
+
+
+    <div class="custom-cursor-dot"></div>
+    <div class="custom-cursor-outline"></div>
+    <div class="custom-cursor-moon"></div>
+    <div class="custom-cursor-moon-trail"></div>
+    <div class="custom-cursor-moon-trail"></div>
+    <div class="custom-cursor-moon-trail"></div>
+    <div class="custom-cursor-moon-trail"></div>
+    <div class="custom-cursor-moon-trail"></div>
+
+    <div class="page-wrapper">
+        <nav class="navbar">
+            <a href="#" class="nav-logo"><img src="https://assets-global.website-files.com/68026a0651df0f492c75ff17/680528ad858ac75ca9598b70_CO%CC%81SMICA_Logo_N.avif" alt="Logo Cósmica"></a>
+            
+            <div class="nav-right">
+                <div class="nav-links">
+                    <a href="#services-timeline-section" class="animated-text-hover">Crea tu Página Web</a>
+                    <a href="#pricing-section" class="animated-text-hover">Precios</a>
+                    <a href="#about-section" class="animated-text-hover">Sobre Nosotros</a>
+                </div>
+                <div class="nav-actions">
+                    <a href="https://app.cosmicaweb.com" target="_blank" class="nav-login-button animated-text-hover"></a>
+                    <a href="#" class="nav-cta-button animated-text-hover main-cta-trigger"></a>
+                </div>
+            </div>
+
+            <button class="nav-toggle-button">
+                <span class="line line-1"></span>
+                <span class="line line-2"></span>
+                <span class="line line-3"></span>
+            </button>
+        </nav>
+        
+        <div class="mobile-nav-menu">
+            <div class="nav-links">
+                <a href="#services-timeline-section" class="animated-text-hover">Crea tu Página Web</a>
+                <a href="#pricing-section" class="animated-text-hover">Precios</a>
+                <a href="#about-section" class="animated-text-hover">Sobre Nosotros</a>
+            </div>
+            <div class="nav-actions">
+                <a href="https://app.cosmicaweb.com" target="_blank" class="nav-login-button animated-text-hover"></a>
+                <a href="#" class="nav-cta-button animated-text-hover main-cta-trigger"></a>
+            </div>
+            <button class="mobile-close-button">Cerrar</button>
+        </div>
+
+        <main>
+            <section class="hero-section">
+                <canvas class="hero-background-canvas"></canvas>
+                <div class="hero-content-wrapper">
+                    <div class="hero-content">
+                        <h1 class="hero-title"><span class="title-line"><span>Webs que venden.</span></span><span class="title-line"><span>Negocios que crecen.</span></span></h1>
+                        <p class="hero-subtitle">Transformamos tu presencia online en un motor de crecimiento real para tu&nbsp;empresa.</p>
+                        <a href="#" class="hero-cta-button hero-main-cta animated-text-hover main-cta-trigger">Impulsa tu negocio</a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="usp-section">
+                <div class="usp-header">
+                    <h2>Una plataforma, todo tu universo digital</h2>
+                    <p>Simplificamos la gestión de tu presencia online para que puedas centrarte en lo que de verdad importa: hacer crecer tu negocio.</p>
+                </div>
+                <div class="usp-grid">
+                    <div class="usp-card">
+                        <iconify-icon class="icon" icon="solar:tuning-linear"></iconify-icon>
+                        <h3>Tu web, tus reglas. Sin complicaciones.</h3>
+                        <p>Solicita cambios, añade contenido o pide nuevas funcionalidades directamente desde nuestra plataforma. Tu equipo de desarrollo, a un solo clic.</p>
+                    </div>
+                    <div class="usp-card">
+                        <iconify-icon class="icon" icon="solar:link-round-angle-linear"></iconify-icon>
+                        <h3>Conecta todo tu ecosistema digital.</h3>
+                        <p>Integra Google My Business y Google Analytics (pronto) para centralizar toda tu información. Menos pestañas, más control.</p>
+                    </div>
+                    <div class="usp-card">
+                        <div class="soon-tag">Próximamente</div>
+                        <iconify-icon class="icon" icon="solar:chart-2-linear"></iconify-icon>
+                        <h3>Métricas que realmente importan.</h3>
+                        <p>Olvídate de los reportes confusos. Te mostramos los datos clave de rendimiento de tu web y tu negocio de una forma clara y accionable.</p>
+                    </div>
+                    <div class="usp-card">
+                        <div class="soon-tag">Próximamente</div>
+                        <iconify-icon class="icon" icon="solar:lightbulb-minimalistic-linear"></iconify-icon>
+                        <h3>Decisiones inteligentes, resultados reales.</h3>
+                        <p>Utilizamos los datos de tus perfiles conectados para sugerir cambios y optimizaciones que impulsen tu crecimiento, todo respaldado por información real.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="services-timeline-section" id="services-timeline-section">
+                <div class="services-timeline-header">
+                    <h2>Nuestro proceso</h2>
+                </div>
+                <div class="services-timeline-container">
+                    <div class="services-timeline-sticky-wrapper">
+                        <div class="timeline-line-container">
+                            <div class="timeline-line"></div>
+                            <div class="timeline-line-progress"></div>
+                        </div>
+                        <div class="services-timeline-track">
+                            <div class="service-timeline-item">
+                                <h3>Diseño</h3>
+                                <p>Creamos una experiencia web única que refleja la identidad de tu marca y cautiva a tus visitantes desde el primer clic.</p>
+                            </div>
+                            <div class="service-timeline-item">
+                                <h3>Desarrollo</h3>
+                                <p>Construimos tu visión con código limpio y tecnología de punta para un rendimiento impecable.</p>
+                            </div>
+                            <div class="service-timeline-item">
+                                <h3>Lanzamiento</h3>
+                                <p>Desplegamos tu nueva web al mundo, asegurando una transición suave y un despegue exitoso.</p>
+                            </div>
+                            <div class="service-timeline-item">
+                                <h3>Soporte</h3>
+                                <p>Estamos a tu lado para asegurar que tu web crezca y evolucione contigo, siempre en perfecto estado.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="about-section" id="about-section">
+                <div class="about-container">
+                    <div class="about-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=2574&auto=format&fit=crop" alt="Equipo trabajando en una oficina moderna">
+                    </div>
+                    <div class="about-content">
+                        <h2>Nacimos para cambiar las reglas.</h2>
+                        <p>Nos dimos cuenta de un problema frustrante y común: las agencias de publicidad tradicionales y los freelancers a menudo dejan a los clientes con promesas incumplidas, comunicación deficiente y resultados que no justifican la inversión.</p>
+                        <p>Decidimos que tenía que haber una mejor manera. Por eso, creamos un modelo diferente: en lugar de proyectos únicos y despedidas, ofrecemos un soporte mensual dedicado. Somos tu equipo de desarrollo web a largo plazo, asegurando que tu página no solo se lance, sino que evolucione, se mantenga segura y crezca contigo.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="reviews-section">
+                <div class="reviews-header">
+                    <h2>Páginas reales, resultados reales</h2>
+                </div>
+                <div class="reviews-marquee">
+                    <div class="reviews-marquee-row"></div>
+                </div>
+            </section>
+
+            <section class="guarantee-section">
+                <div class="guarantee-container">
+                    <canvas class="guarantee-background-canvas"></canvas>
+                    <div class="guarantee-content">
+                        <h2 class="guarantee-title">Garantía de satisfacción</h2>
+                        <p class="guarantee-text">Confiamos tanto en nuestro trabajo que si no estás 100% satisfecho con el resultado final, trabajamos hasta que lo estés. Tu éxito es nuestra reputación.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="pricing-section" id="pricing-section">
+                <div class="pricing-header">
+                    <h2>Nuestros planes</h2>
+                </div>
+                <div class="pricing-card">
+                    <div class="price-display">
+                        <h3 class="price-amount" id="main-price-amount">$300.000<span>/mes</span></h3>
+                        <p class="price-setup-fee">Pago inicial de $800.000 para el montaje web.</p>
+                    </div>
+                    <div class="pricing-addons">
+                        <div class="addon-item">
+                            <div class="addon-label-wrapper">
+                                <span class="addon-label">Landing Page Adicional</span>
+                                <div class="info-tooltip-wrapper">
+                                    <iconify-icon class="info-icon" icon="solar:info-circle-linear"></iconify-icon>
+                                    <div class="tooltip-box">
+                                        Las Landing Pages se usan para promocionar ubicaciones o servicios específicos.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="lp-counter">
+                                <button class="counter-btn" id="minus-lp">-</button>
+                                <span id="lp-count">0</span>
+                                <button class="counter-btn" id="plus-lp">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="features-list">
+                        <h3>Incluye:</h3>
+                        <ul>
+                            <li><iconify-icon icon="solar:check-circle-bold"></iconify-icon>Página web con estructura SEO</li>
+                            <li><iconify-icon icon="solar:check-circle-bold"></iconify-icon>Cambios web ilimitados</li>
+                            <li><iconify-icon icon="solar:check-circle-bold"></iconify-icon>No pagas por hosting</li>
+                            <li><iconify-icon icon="solar:check-circle-bold"></iconify-icon>Soporte personal</li>
+                            <li id="landing-page-feature" style="display: none; opacity: 0;"><iconify-icon icon="solar:check-circle-bold"></iconify-icon>Landing Pages Adicionales</li>
+                        </ul>
+                    </div>
+                    <a href="#" id="pricing-cta-button" class="hero-cta-button pricing-cta animated-text-hover main-cta-trigger" style="width: 100%; text-align: center; justify-content: center;">Crear mi página web</a>
+                </div>
+            </section>
+
+            <section class="faq-section">
+                <div class="faq-header">
+                    <h2>Preguntas Frecuentes</h2>
+                </div>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>¿Cuánto tiempo toma construir mi página web?</h3>
+                            <iconify-icon class="faq-icon" icon="ph:plus-bold"></iconify-icon>
+                        </div>
+                        <div class="faq-answer">
+                            <p>El proceso de diseño y desarrollo de una página web estándar suele tomar entre 2 y 4 semanas, desde la reunión inicial hasta el lanzamiento. Este tiempo puede variar según la complejidad y la cantidad de contenido.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>¿Necesito tener mi propio hosting o dominio?</h3>
+                            <iconify-icon class="faq-icon" icon="ph:plus-bold"></iconify-icon>
+                        </div>
+                        <div class="faq-answer">
+                            <p>No, ¡nosotros nos encargamos de todo! Nuestros planes incluyen hosting de alta velocidad y la gestión de tu dominio, para que no tengas que preocuparte por los detalles técnicos.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>¿Puedo solicitar cambios en mi web una vez esté terminada?</h3>
+                            <iconify-icon class="faq-icon" icon="ph:plus-bold"></iconify-icon>
+                        </div>
+                        <div class="faq-answer">
+                            <p>¡Por supuesto! Nuestro plan incluye cambios ilimitados. Puedes solicitar actualizaciones de texto, imágenes o pequeños ajustes de diseño a través de nuestra plataforma de soporte en cualquier momento.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>¿Qué pasa si no estoy satisfecho con el diseño?</h3>
+                            <iconify-icon class="faq-icon" icon="ph:plus-bold"></iconify-icon>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Tu satisfacción es nuestra prioridad. Trabajamos con un proceso de revisiones y feedback constante. Si al final no estás 100% conforme, nuestra garantía de satisfacción asegura que seguiremos trabajando hasta alcanzar el resultado que esperas.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="final-cta-section" id="final-cta-section">
+                <div class="final-cta-grid-bg"></div>
+                <div class="final-cta-content">
+                    <h2>¿Listo para empezar tu proyecto?</h2>
+                    <p>Hablemos hoy mismo. Sin compromisos, solo soluciones.</p>
+                </div>
+                <a href="#" class="magnetic-button main-cta-trigger">
+                    <iconify-icon icon="ph:arrow-right-bold"></iconify-icon>
+                </a>
+            </section>
+        
+        </main>
+
+        <footer class="site-footer">
+            <div class="footer-main">
+                <div class="footer-column">
+                    <img src="https://cdn.prod.website-files.com/68026a0651df0f492c75ff17/68052b14352271978c443cef_CO%CC%81SMICA_Blanco_L.avif" alt="Logo Cósmica Blanco" class="footer-logo">
+                    <p>Transformamos tu presencia online en un motor de crecimiento real para tu empresa.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Navegación</h3>
+                    <ul class="footer-links">
+                        <li><a href="#services-timeline-section">Crea tu Página Web</a></li>
+                        <li><a href="#pricing-section">Precios</a></li>
+                        <li><a href="#about-section">Sobre Nosotros</a></li>
+                    </ul>
+                </div>
+                 <div class="footer-column">
+                    <h3>Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Términos de Servicio</a></li>
+                        <li><a href="#">Política de Privacidad</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>Crafted by</span>
+                <img src="https://cdn.prod.website-files.com/68026a0651df0f492c75ff17/68052b14352271978c443cef_CO%CC%81SMICA_Blanco_L.avif" alt="Logo Cósmica Blanco">
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts de librerías externas -->
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.27/bundled/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+    
+    <!-- Enlace al archivo JavaScript externo -->
+    <script src="js/script.js"></script>
+
+</body>
+</html>
