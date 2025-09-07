@@ -38,6 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
         gsap.registerPlugin(ScrollTrigger);
         const lenis = initLenis();
         initCustomCursor();
+        initStickerPhysics(); // Inicializar física del sticker
         initScrollAnimations();
         initTextAnimations();
         initCanvasBackgrounds();
@@ -152,7 +153,8 @@ document.addEventListener('DOMContentLoaded', () => {
         function formatPrice(price) { return price.toLocaleString('es-CO'); }
         
         function updatePriceAndFeatures() {
-            const currentPrice = parseInt(priceAmountEl.textContent.replace(/\D/g, '')) || basePrice;
+            const currentPriceText = priceAmountEl.textContent.replace(/\$|\./g, '').split('/')[0];
+            const currentPrice = parseInt(currentPriceText) || basePrice;
             const targetPrice = basePrice + (lpCount * landingPagePrice);
             
             gsap.to({ val: currentPrice }, { 
@@ -220,9 +222,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     function initCustomCursor() {
-        const cursorDot = document.querySelector('.custom-cursor-dot');
         const cursorOutline = document.querySelector('.custom-cursor-outline');
-        if (!cursorDot || !cursorOutline) return;
+        if (!cursorOutline) return;
         
         document.querySelectorAll('a, button, .faq-question').forEach(el => {
             el.addEventListener('mouseenter', () => cursorOutline.classList.add('hover'));
@@ -231,31 +232,38 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function initCanvasBackgrounds() {
-        class Blob { constructor(x, y, r, color, canvasWidth, canvasHeight) { this.x = x; this.y = y; this.r = r; this.color = color; this.canvasWidth = canvasWidth; this.canvasHeight = canvasHeight; this.vx = (Math.random() - 0.5) * 0.4; this.vy = (Math.random() - 0.5) * 0.4; } update() { this.x += this.vx; this.y += this.vy; if (this.x < this.r * 0.8 || this.x > this.canvasWidth - this.r * 0.8) this.vx *= -1; if (this.y < this.r * 0.8 || this.y > this.canvasHeight - this.r * 0.8) this.vy *= -1; } draw(ctx) { ctx.beginPath(); ctx.fillStyle = this.color; ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2); ctx.fill(); } }
+        class Blob {
+            constructor(x, y, r, color, canvasWidth, canvasHeight) { this.x = x; this.y = y; this.r = r; this.color = color; this.canvasWidth = canvasWidth; this.canvasHeight = canvasHeight; this.vx = (Math.random() - 0.5) * 0.4; this.vy = (Math.random() - 0.5) * 0.4; }
+            update() { this.x += this.vx; this.y += this.vy; if (this.x < this.r * 0.8 || this.x > this.canvasWidth - this.r * 0.8) this.vx *= -1; if (this.y < this.r * 0.8 || this.y > this.canvasHeight - this.r * 0.8) this.vy *= -1; }
+            draw(ctx) { ctx.beginPath(); ctx.fillStyle = this.color; ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2); ctx.fill(); }
+        }
         
-        function setupCanvas(canvasSelector, createBlobsFn) { 
-            const canvas = document.querySelector(canvasSelector); 
-            if (!canvas) return null; 
-            const ctx = canvas.getContext('2d'); 
-            let width, height, blobs; 
+        function setupCanvas(canvasSelector, createBlobsFn) {
+            const canvas = document.querySelector(canvasSelector);
+            if (!canvas) return null;
+            const ctx = canvas.getContext('2d');
+            let width, height, blobs;
             let animationFrameId;
-            function init() { 
+
+            function init() {
                 if (animationFrameId) cancelAnimationFrame(animationFrameId);
-                if (!canvas.offsetParent) return; 
-                width = canvas.width = canvas.offsetWidth; 
-                height = canvas.height = canvas.offsetHeight; 
-                blobs = createBlobsFn(width, height); 
+                // CORRECCIÓN: Se eliminó la condición 'offsetParent' que impedía la renderización en móviles.
+                width = canvas.width = canvas.offsetWidth;
+                height = canvas.height = canvas.offsetHeight;
+                blobs = createBlobsFn(width, height);
                 animate();
-            } 
-            function animate() { 
-                if (!blobs) return; 
-                ctx.clearRect(0, 0, width, height); 
-                ctx.filter = 'blur(80px) saturate(1.2)'; 
-                blobs.forEach(blob => { blob.update(); blob.draw(ctx); }); 
-                animationFrameId = requestAnimationFrame(animate); 
-            } 
-            init(); 
-            return init; 
+            }
+
+            function animate() {
+                if (!blobs) return;
+                ctx.clearRect(0, 0, width, height);
+                ctx.filter = 'blur(80px) saturate(1.2)';
+                blobs.forEach(blob => { blob.update(); blob.draw(ctx); });
+                animationFrameId = requestAnimationFrame(animate);
+            }
+            
+            init();
+            return init;
         }
 
         const initHero = setupCanvas('.hero-background-canvas', (w, h) => [ new Blob(w * 0.2, h * 0.3, w * 0.15, 'rgba(59, 130, 246, 0.6)', w, h), new Blob(w * 0.8, h * 0.7, w * 0.25, 'rgba(96, 165, 250, 0.6)', w, h), new Blob(w * 0.5, h * 0.5, w * 0.1, 'rgba(37, 99, 235, 0.6)', w, h) ]);
@@ -266,6 +274,62 @@ document.addEventListener('DOMContentLoaded', () => {
             if (typeof initGuarantee === 'function') initGuarantee();
         });
     }
+
+    function initStickerPhysics() {
+        const { Engine, Runner, Bodies, Composite, Mouse, MouseConstraint } = Matter;
+        const stickerElement = document.querySelector('.sticker');
+        if (!stickerElement) return null;
+
+        const engine = Engine.create();
+        const world = engine.world;
+        engine.gravity.y = 1;
+
+        let ground, ceiling, leftWall, rightWall;
+        let ceilingAdded = false;
+        const stickerSize = 150;
+        const randomX = Math.random() * (window.innerWidth - stickerSize) + (stickerSize / 2);
+
+        const stickerBody = Bodies.rectangle(randomX, -100, stickerSize, stickerSize, { restitution: 0.7, friction: 0.3, frictionAir: 0.01, render: { visible: false } });
+        Matter.Body.setVelocity(stickerBody, { x: (Math.random() - 0.5) * 15, y: 0 });
+        Matter.Body.setAngularVelocity(stickerBody, (Math.random() - 0.5) * 0.2);
+        Composite.add(world, stickerBody);
+
+        function setupWalls() {
+            const wallsToRemove = [leftWall, rightWall, ground, ceiling].filter(Boolean);
+            if (wallsToRemove.length > 0) Composite.remove(world, wallsToRemove);
+
+            const viewportWidth = window.innerWidth;
+            const docHeight = document.documentElement.scrollHeight;
+            const currentScroll = lenis ? lenis.scroll : 0;
+
+            leftWall = Bodies.rectangle(-30, docHeight / 2, 60, docHeight, { isStatic: true });
+            rightWall = Bodies.rectangle(viewportWidth + 30, docHeight / 2, 60, docHeight, { isStatic: true });
+            ground = Bodies.rectangle(viewportWidth / 2, currentScroll + window.innerHeight + 30, viewportWidth, 60, { isStatic: true });
+            ceiling = Bodies.rectangle(viewportWidth / 2, currentScroll - 30, viewportWidth, 60, { isStatic: true, isSensor: !ceilingAdded });
+            
+            Composite.add(world, [ground, ceiling, leftWall, rightWall]);
+        }
+
+        const mouse = Mouse.create(document.documentElement);
+        const mouseConstraint = MouseConstraint.create(engine, { mouse: mouse, constraint: { stiffness: 0.02, damping: 0.1, render: { visible: false } } });
+        Composite.add(world, mouseConstraint);
+
+        const runner = Runner.create();
+        Runner.run(runner, engine);
+
+        setupWalls();
+        setTimeout(() => {
+            if (ceiling) {
+                ceiling.isSensor = false;
+                ceilingAdded = true;
+            }
+        }, 2500);
+        
+        window.addEventListener('resize', setupWalls);
+        
+        return { stickerBody, stickerElement, stickerSize, ground, ceiling };
+    }
+
 
     function initScrollAnimations() {
         const nav = document.querySelector('.navbar');
@@ -347,6 +411,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function startGlobalTicker(lenis) {
+        const { stickerBody, stickerElement, stickerSize, ground, ceiling } = initStickerPhysics();
         const cursorDot = document.querySelector('.custom-cursor-dot');
         const cursorOutline = document.querySelector('.custom-cursor-outline');
         const cursorMoon = document.querySelector('.custom-cursor-moon');
@@ -362,10 +427,26 @@ document.addEventListener('DOMContentLoaded', () => {
         const trailsXTo = moonTrails.map((trail, i) => gsap.quickTo(trail, "x", { duration: 0.2 + i * 0.08, ease: "power2.out" }));
         const trailsYTo = moonTrails.map((trail, i) => gsap.quickTo(trail, "y", { duration: 0.2 + i * 0.08, ease: "power2.out" }));
         let orbitRadius = 25;
+        let currentScroll = 0;
 
         gsap.ticker.add((time) => {
-            if (lenis) lenis.raf(time * 1000);
+            if (lenis) {
+                lenis.raf(time * 1000);
+                currentScroll = lenis.scroll;
+            }
             
+            if (stickerBody) {
+                if (ground) Matter.Body.setPosition(ground, { x: window.innerWidth / 2, y: currentScroll + window.innerHeight + 30 });
+                if (ceiling) Matter.Body.setPosition(ceiling, { x: window.innerWidth / 2, y: currentScroll - 30 });
+
+                const pos = stickerBody.position;
+                gsap.set(stickerElement, {
+                    x: pos.x - (stickerSize / 2),
+                    y: pos.y - (stickerSize / 2) - currentScroll,
+                    rotation: stickerBody.angle * (180 / Math.PI)
+                });
+            }
+
             if (window.innerWidth >= 1024) {
                 if(cursorDot) { dotXTo(mouseX); dotYTo(mouseY); }
                 if(cursorOutline) { outlineXTo(mouseX); outlineYTo(mouseY); }
@@ -385,15 +466,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         const currentTrail = moonTrails[i];
                         const currentX = gsap.getProperty(currentTrail, "x");
                         const currentY = gsap.getProperty(currentTrail, "y");
-                        
                         t(prevX);
                         trailsYTo[i](prevY);
-                        
                         gsap.set(currentTrail, { 
                             opacity: 1 - (i + 1) / (moonTrails.length + 1), 
                             scale: scale * (1 - (i+1)*0.1) 
                         });
-
                         prevX = currentX;
                         prevY = currentY;
                     });

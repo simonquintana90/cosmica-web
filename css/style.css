@@ -268,7 +268,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 .services-timeline-container {
     width: 100%;
-    height: 250vh;
     position: relative;
 }
 .services-timeline-sticky-wrapper {
@@ -326,6 +325,37 @@ h1, h2, h3, h4, h5, h6 {
     background-color: var(--accent);
     width: 0%;
 }
+
+/* Responsividad para Timeline */
+@media (max-width: 1023px) {
+    .services-timeline-container {
+        height: auto;
+    }
+    .services-timeline-sticky-wrapper {
+        position: relative;
+        height: auto;
+        overflow: visible;
+    }
+    .services-timeline-track {
+        flex-direction: column;
+        width: 100%;
+        padding: 0 2rem;
+    }
+    .service-timeline-item {
+        width: 100%;
+        max-width: none;
+        padding: 4rem 0;
+        text-align: center;
+        align-items: center;
+    }
+    .timeline-line-container {
+        display: none;
+    }
+    .service-timeline-item.is-active h3, .service-timeline-item h3 {
+        color: var(--text-dark);
+    }
+}
+
 
 /* --- NUEVA SECCIÓN: SOBRE NOSOTROS --- */
 .about-section {
@@ -423,6 +453,15 @@ h1, h2, h3, h4, h5, h6 {
 .google-logo {
     width: 24px;
     height: 24px;
+}
+@media (max-width: 767px) {
+    .review-card {
+        width: 300px;
+        padding: 1.5rem;
+    }
+    .reviews-marquee-row {
+        gap: 1.5rem;
+    }
 }
 
 /* --- SECCIÓN DE GARANTÍA --- */
@@ -608,6 +647,11 @@ h1, h2, h3, h4, h5, h6 {
 .features-list li iconify-icon {
     color: var(--accent);
     font-size: 1.2rem;
+}
+@media (max-width: 767px) {
+    .pricing-card {
+        padding: 2rem;
+    }
 }
 
 /* --- SECCIÓN DE FAQS --- */
