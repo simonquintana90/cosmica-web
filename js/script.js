@@ -1,28 +1,19 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // =================================================================
-    // SCRIPT REESTRUCTURADO PARA MAYOR ESTABILIDAD
-    // =================================================================
-
     /**
      * Función principal que inicializa todos los componentes de la página.
      */
     function main() {
         try {
             initEssentialUI();
-        } catch (error) {
-            console.error("Error al inicializar la UI esencial:", error);
-        }
-
-        try {
             initPageEnhancements();
         } catch (error) {
-            console.error("Error al inicializar las mejoras de la página:", error);
+            console.error("Error en la inicialización principal:", error);
         }
     }
 
     /**
-     * Inicializa los componentes de UI críticos: menú, formulario y FAQ.
+     * Inicializa los componentes de UI críticos.
      */
     function initEssentialUI() {
         initMobileMenu();
@@ -32,16 +23,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /**
-     * Inicializa todas las animaciones, efectos visuales y la física del sticker.
+     * Inicializa todas las animaciones y efectos visuales.
      */
     function initPageEnhancements() {
         gsap.registerPlugin(ScrollTrigger);
         const lenis = initLenis();
-        initCustomCursor();
-        initStickerPhysics(); // Inicializar física del sticker
         initScrollAnimations();
         initTextAnimations();
-        initCanvasBackgrounds();
         startGlobalTicker(lenis);
     }
 
@@ -70,15 +58,10 @@ document.addEventListener('DOMContentLoaded', () => {
         closeBtn.addEventListener('click', () => toggleMenu(false));
         mobileMenuLinks.forEach(link => {
             link.addEventListener('click', () => {
-                if (!link.classList.contains('main-cta-trigger') && document.body.classList.contains('mobile-menu-open')) {
+                if (document.body.classList.contains('mobile-menu-open')) {
                     toggleMenu(false);
                 }
             });
-        });
-        window.addEventListener('resize', () => {
-            if (window.innerWidth > 1023 && document.body.classList.contains('mobile-menu-open')) {
-                menuTl.reverse();
-            }
         });
     }
 
@@ -91,15 +74,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!ctaTriggers.length || !formOverlay || !closeBtn || !form) return;
         
-        const openModal = () => {
-            document.body.classList.add('form-modal-open');
-            formOverlay.classList.add('active');
-        };
-
-        const closeModal = () => {
-            document.body.classList.remove('form-modal-open');
-            formOverlay.classList.remove('active');
-        };
+        const openModal = () => document.body.classList.add('form-modal-open');
+        const closeModal = () => document.body.classList.remove('form-modal-open');
 
         ctaTriggers.forEach(trigger => trigger.addEventListener('click', e => { e.preventDefault(); openModal(); }));
         closeBtn.addEventListener('click', closeModal);
@@ -153,8 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
         function formatPrice(price) { return price.toLocaleString('es-CO'); }
         
         function updatePriceAndFeatures() {
-            const currentPriceText = priceAmountEl.textContent.replace(/\$|\./g, '').split('/')[0];
-            const currentPrice = parseInt(currentPriceText) || basePrice;
+            const currentPrice = parseInt(priceAmountEl.textContent.replace(/\D/g, '')) || basePrice;
             const targetPrice = basePrice + (lpCount * landingPagePrice);
             
             gsap.to({ val: currentPrice }, { 
@@ -188,11 +163,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const faqItems = gsap.utils.toArray('.faq-item');
         faqItems.forEach(item => {
             const question = item.querySelector('.faq-question');
-            const answer = item.querySelector('.faq-answer');
-            const icon = item.querySelector('.faq-icon');
-            if (!question || !answer || !icon) return;
+            if (!question) return;
 
-            gsap.set(answer, { maxHeight: 0 });
             question.addEventListener('click', () => {
                 const isActive = item.classList.contains('active');
                 
@@ -206,8 +178,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (!isActive) {
                     item.classList.add('active');
-                    gsap.to(answer, { maxHeight: answer.scrollHeight, duration: 0.5, ease: 'power2.inOut' });
-                    gsap.to(icon, { rotation: 45, duration: 0.4, ease: 'power2.inOut' });
+                    gsap.to(item.querySelector('.faq-answer'), { maxHeight: item.querySelector('.faq-answer').scrollHeight, duration: 0.5, ease: 'power2.inOut' });
+                    gsap.to(item.querySelector('.faq-icon'), { rotation: 45, duration: 0.4, ease: 'power2.inOut' });
                 }
             });
         });
@@ -221,157 +193,88 @@ document.addEventListener('DOMContentLoaded', () => {
         return lenis;
     }
     
-    function initCustomCursor() {
-        const cursorOutline = document.querySelector('.custom-cursor-outline');
-        if (!cursorOutline) return;
-        
-        document.querySelectorAll('a, button, .faq-question').forEach(el => {
-            el.addEventListener('mouseenter', () => cursorOutline.classList.add('hover'));
-            el.addEventListener('mouseleave', () => cursorOutline.classList.remove('hover'));
-        });
-    }
-
-    function initCanvasBackgrounds() {
-        class Blob {
-            constructor(x, y, r, color, canvasWidth, canvasHeight) { this.x = x; this.y = y; this.r = r; this.color = color; this.canvasWidth = canvasWidth; this.canvasHeight = canvasHeight; this.vx = (Math.random() - 0.5) * 0.4; this.vy = (Math.random() - 0.5) * 0.4; }
-            update() { this.x += this.vx; this.y += this.vy; if (this.x < this.r * 0.8 || this.x > this.canvasWidth - this.r * 0.8) this.vx *= -1; if (this.y < this.r * 0.8 || this.y > this.canvasHeight - this.r * 0.8) this.vy *= -1; }
-            draw(ctx) { ctx.beginPath(); ctx.fillStyle = this.color; ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2); ctx.fill(); }
-        }
-        
-        function setupCanvas(canvasSelector, createBlobsFn) {
-            const canvas = document.querySelector(canvasSelector);
-            if (!canvas) return null;
-            const ctx = canvas.getContext('2d');
-            let width, height, blobs;
-            let animationFrameId;
-
-            function init() {
-                if (animationFrameId) cancelAnimationFrame(animationFrameId);
-                // CORRECCIÓN: Se eliminó la condición 'offsetParent' que impedía la renderización en móviles.
-                width = canvas.width = canvas.offsetWidth;
-                height = canvas.height = canvas.offsetHeight;
-                blobs = createBlobsFn(width, height);
-                animate();
-            }
-
-            function animate() {
-                if (!blobs) return;
-                ctx.clearRect(0, 0, width, height);
-                ctx.filter = 'blur(80px) saturate(1.2)';
-                blobs.forEach(blob => { blob.update(); blob.draw(ctx); });
-                animationFrameId = requestAnimationFrame(animate);
-            }
-            
-            init();
-            return init;
-        }
-
-        const initHero = setupCanvas('.hero-background-canvas', (w, h) => [ new Blob(w * 0.2, h * 0.3, w * 0.15, 'rgba(59, 130, 246, 0.6)', w, h), new Blob(w * 0.8, h * 0.7, w * 0.25, 'rgba(96, 165, 250, 0.6)', w, h), new Blob(w * 0.5, h * 0.5, w * 0.1, 'rgba(37, 99, 235, 0.6)', w, h) ]);
-        const initGuarantee = setupCanvas('.guarantee-background-canvas', (w, h) => [ new Blob(w * 0.1, h * 0.5, w * 0.2, 'rgba(59, 130, 246, 0.6)', w, h), new Blob(w * 0.9, h * 0.5, w * 0.3, 'rgba(96, 165, 250, 0.6)', w, h) ]);
-        
-        window.addEventListener('resize', () => {
-            if (typeof initHero === 'function') initHero();
-            if (typeof initGuarantee === 'function') initGuarantee();
-        });
-    }
-
-    function initStickerPhysics() {
-        const { Engine, Runner, Bodies, Composite, Mouse, MouseConstraint } = Matter;
-        const stickerElement = document.querySelector('.sticker');
-        if (!stickerElement) return null;
-
-        const engine = Engine.create();
-        const world = engine.world;
-        engine.gravity.y = 1;
-
-        let ground, ceiling, leftWall, rightWall;
-        let ceilingAdded = false;
-        const stickerSize = 150;
-        const randomX = Math.random() * (window.innerWidth - stickerSize) + (stickerSize / 2);
-
-        const stickerBody = Bodies.rectangle(randomX, -100, stickerSize, stickerSize, { restitution: 0.7, friction: 0.3, frictionAir: 0.01, render: { visible: false } });
-        Matter.Body.setVelocity(stickerBody, { x: (Math.random() - 0.5) * 15, y: 0 });
-        Matter.Body.setAngularVelocity(stickerBody, (Math.random() - 0.5) * 0.2);
-        Composite.add(world, stickerBody);
-
-        function setupWalls() {
-            const wallsToRemove = [leftWall, rightWall, ground, ceiling].filter(Boolean);
-            if (wallsToRemove.length > 0) Composite.remove(world, wallsToRemove);
-
-            const viewportWidth = window.innerWidth;
-            const docHeight = document.documentElement.scrollHeight;
-            const currentScroll = lenis ? lenis.scroll : 0;
-
-            leftWall = Bodies.rectangle(-30, docHeight / 2, 60, docHeight, { isStatic: true });
-            rightWall = Bodies.rectangle(viewportWidth + 30, docHeight / 2, 60, docHeight, { isStatic: true });
-            ground = Bodies.rectangle(viewportWidth / 2, currentScroll + window.innerHeight + 30, viewportWidth, 60, { isStatic: true });
-            ceiling = Bodies.rectangle(viewportWidth / 2, currentScroll - 30, viewportWidth, 60, { isStatic: true, isSensor: !ceilingAdded });
-            
-            Composite.add(world, [ground, ceiling, leftWall, rightWall]);
-        }
-
-        const mouse = Mouse.create(document.documentElement);
-        const mouseConstraint = MouseConstraint.create(engine, { mouse: mouse, constraint: { stiffness: 0.02, damping: 0.1, render: { visible: false } } });
-        Composite.add(world, mouseConstraint);
-
-        const runner = Runner.create();
-        Runner.run(runner, engine);
-
-        setupWalls();
-        setTimeout(() => {
-            if (ceiling) {
-                ceiling.isSensor = false;
-                ceilingAdded = true;
-            }
-        }, 2500);
-        
-        window.addEventListener('resize', setupWalls);
-        
-        return { stickerBody, stickerElement, stickerSize, ground, ceiling };
-    }
-
-
     function initScrollAnimations() {
-        const nav = document.querySelector('.navbar');
-        if (nav) {
-            ScrollTrigger.create({ trigger: ".hero-section", start: "bottom top", onEnter: () => nav.classList.add("scrolled"), onLeaveBack: () => nav.classList.remove("scrolled") });
-        }
-        
-        gsap.timeline({ scrollTrigger: { trigger: ".hero-section", start: "top top", end: "bottom top", scrub: true } })
-            .to(".hero-content", { scale: 0.8, opacity: 0, ease: "power1.in" }, 0);
+        // Animaciones de entrada para secciones
+        gsap.utils.toArray('.usp-header, .how-it-works-header, .reviews-header, .pricing-header, .faq-header, .guarantee-content h2, .guarantee-content p, .final-cta-content h2, .final-cta-content p, .social-proof-section').forEach(el => {
+            gsap.from(el, { scrollTrigger: { trigger: el, start: "top 85%" }, opacity: 0, y: 50, duration: 1, ease: "power3.out" });
+        });
 
         gsap.utils.toArray(".usp-card").forEach(card => {
             gsap.from(card, { scrollTrigger: { trigger: card, start: "top 85%" }, opacity: 0, scale: 0.95, y: 40, duration: 0.8, ease: "expo.out" });
         });
-
-        const timelineTrack = document.querySelector('.services-timeline-track');
-        if (timelineTrack) {
-            const timelineScroll = gsap.to(timelineTrack, {
-                x: () => -(timelineTrack.scrollWidth - window.innerWidth), ease: "none",
-                scrollTrigger: { trigger: ".services-timeline-container", start: "top top", end: "bottom bottom", scrub: true, pin: ".services-timeline-sticky-wrapper", invalidateOnRefresh: true }
+        
+        // Animación para la nueva sección "Manifiesto"
+        gsap.utils.toArray(".manifesto-step").forEach((step, index) => {
+            gsap.from(step, {
+                scrollTrigger: {
+                    trigger: step,
+                    start: "top 85%",
+                },
+                opacity: 0,
+                y: 40,
+                duration: 0.8,
+                ease: "power3.out",
+                delay: index * 0.15
             });
-            gsap.utils.toArray('.service-timeline-item').forEach(item => {
-                ScrollTrigger.create({ trigger: item, containerAnimation: timelineScroll, start: "left 50%", end: "right 50%", onToggle: self => item.classList.toggle("is-active", self.isActive) });
-            });
-            gsap.to('.timeline-line-progress', { width: '100%', ease: 'none', scrollTrigger: { trigger: ".services-timeline-container", start: "top top", end: "bottom bottom", scrub: true } });
-        }
+        });
 
+        // Animación interactiva de "Cómo Funciona"
+        const steps = gsap.utils.toArray('.step-content');
+        const images = gsap.utils.toArray('.mockup-content img');
+
+        if (images.length > 0) { images[0].classList.add('active'); }
+
+        steps.forEach((step) => {
+            ScrollTrigger.create({
+                trigger: step,
+                start: "top 50%",
+                end: "bottom 50%",
+                onToggle: self => {
+                    step.classList.toggle("is-active", self.isActive);
+                    if (self.isActive) {
+                        images.forEach(img => img.classList.remove('active'));
+                        const activeImage = images.find(img => img.dataset.step === step.dataset.step);
+                        if (activeImage) {
+                            activeImage.classList.add('active');
+                        }
+                    }
+                }
+            });
+        });
+
+        // Marquee de reseñas (LÓGICA SIMPLIFICADA)
         const marqueeRow = document.querySelector('.reviews-marquee-row');
         if (marqueeRow) {
-            const reviews = [ { quote: "Fue más de lo que soñamos...", author: "Laura Romero" }, { quote: "Me encantó el servicio de Simón...", author: "Veronica Huertas" }, { quote: "Muy buen servicio al cliente y conocimiento.", author: "Jose Afanador" }, { quote: "Excelente servicio. Lo dejé todo en sus manos...", author: "Gabriel A." }, { quote: "Muy creativo, paciente buena asesoría...", author: "Michelle Verner" }, { quote: "Simón ofrece un servicio excelente!...", author: "Juan David Orozco" } ];
+            const reviews = [
+                { quote: "Excelente servicio. Lo dejé todo en sus manos e incrementaron mis ventas.", author: "Gabriel A." },
+                { quote: "Muy buen servicio al cliente y conocimiento.", author: "Jose Afanador" },
+                { quote: "Fue más de lo que soñamos. La página para nuestra fundación quedó clara, funcional y profesional...", author: "Qué Buena Salud" },
+                { quote: "Simón ofrece un servicio excelente; es responsable, amable y siempre está dispuesto a resolver cualquier...", author: "Juan David Orozco" },
+                { quote: "Me encantó el servicio de Simón por sus ideas, su rapidez, paciencia y su gran talento para crear...", author: "Soy Tribu SAS" },
+                { quote: "Muy creativo, paciente, buena asesoría y siempre dispuesto a entregar lo mejor. Recomendado 100%...", author: "Michelle Verner Gomez" }
+            ];
+
             reviews.forEach(review => {
                 const card = document.createElement('div');
                 card.className = 'review-card';
-                card.innerHTML = `<p class="review-quote">"${review.quote}"</p><div class="review-author"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google Logo" class="google-logo"><span>${review.author}</span></div>`;
+                card.innerHTML = `
+                    <p class="review-quote">"${review.quote}"</p>
+                    <div class="review-author">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google Logo" class="google-logo">
+                        <span>${review.author}</span>
+                    </div>`;
                 marqueeRow.appendChild(card);
             });
+
             const reviewCards = gsap.utils.toArray('.review-card', marqueeRow);
             reviewCards.forEach(card => marqueeRow.appendChild(card.cloneNode(true)));
+            
             const loop = gsap.to(marqueeRow, { xPercent: -50, ease: 'none', duration: 40, repeat: -1 });
             marqueeRow.addEventListener('mouseenter', () => gsap.to(loop, { timeScale: 0.2, duration: 0.5 }));
             marqueeRow.addEventListener('mouseleave', () => gsap.to(loop, { timeScale: 1, duration: 0.5 }));
         }
 
+        // Botón magnético
         const ctaSection = document.querySelector('.final-cta-section');
         const magneticBtn = document.querySelector('.magnetic-button');
         if (ctaSection && magneticBtn) {
@@ -386,100 +289,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     function initTextAnimations() {
-        gsap.timeline({ defaults: { ease: "power3.out", duration: 1.2 } })
-            .fromTo('.navbar', { y: -30, opacity: 0 }, { y: 0, opacity: 1, duration: 1, delay: 0.2 })
-            .from('.title-line span', { y: '110%', stagger: 0.15, duration: 1, ease: "expo.out" }, 0.5)
-            .from('.hero-subtitle', { opacity: 0, y: 30 }, 0.9)
-            .from('.hero-cta-button', { opacity: 0, y: 30, scale: 0.95 }, 1.1);
-
-        const animatedElements = document.querySelectorAll('.animated-text-hover');
-        const buttonTexts = { 'nav-login-button': 'Login', 'nav-cta-button': 'Crear una página web', 'hero-main-cta': 'Impulsa tu negocio', 'pricing-cta': 'Crear mi página web' };
-        animatedElements.forEach(element => {
-            let text = element.textContent.trim();
-            let key = Array.from(element.classList).find(cls => buttonTexts[cls]);
-            if (key) text = buttonTexts[key];
-            if (text === '') return;
-            element.innerHTML = '';
-            text.split('').forEach((char, index) => {
-                const wrapper = document.createElement('span');
-                wrapper.className = 'letter-wrapper';
-                wrapper.style.setProperty('--delay', `${index * 25}ms`);
-                wrapper.innerHTML = (char === ' ') ? '&nbsp;' : `<span class="letter">${char}</span><span class="letter">${char}</span>`;
-                element.appendChild(wrapper);
-            });
-        });
+        const heroTimeline = gsap.timeline({ defaults: { ease: "power3.out" } });
+        
+        heroTimeline
+            .from('.hero-title', { opacity: 0, y: 40, duration: 1.2 }, 0.2)
+            .from('.hero-subtitle', { opacity: 0, y: 30, duration: 1 }, 0.5)
+            .from('.hero-cta-button', { opacity: 0, y: 20, scale: 0.95, duration: 1 }, 0.8)
+            .from('.hero-visual-placeholder', { opacity: 0, scale: 0.9, duration: 1.5, ease: 'expo.out' }, 0.4);
     }
 
     function startGlobalTicker(lenis) {
-        const { stickerBody, stickerElement, stickerSize, ground, ceiling } = initStickerPhysics();
-        const cursorDot = document.querySelector('.custom-cursor-dot');
-        const cursorOutline = document.querySelector('.custom-cursor-outline');
-        const cursorMoon = document.querySelector('.custom-cursor-moon');
-        const moonTrails = gsap.utils.toArray(".custom-cursor-moon-trail");
-
-        let mouseX = 0, mouseY = 0;
-        window.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; });
-
-        const dotXTo = gsap.quickTo(cursorDot, "x", { duration: 0.2, ease: "power2" });
-        const dotYTo = gsap.quickTo(cursorDot, "y", { duration: 0.2, ease: "power2" });
-        const outlineXTo = gsap.quickTo(cursorOutline, "x", { duration: 0.6, ease: "power2" });
-        const outlineYTo = gsap.quickTo(cursorOutline, "y", { duration: 0.6, ease: "power2" });
-        const trailsXTo = moonTrails.map((trail, i) => gsap.quickTo(trail, "x", { duration: 0.2 + i * 0.08, ease: "power2.out" }));
-        const trailsYTo = moonTrails.map((trail, i) => gsap.quickTo(trail, "y", { duration: 0.2 + i * 0.08, ease: "power2.out" }));
-        let orbitRadius = 25;
-        let currentScroll = 0;
-
         gsap.ticker.add((time) => {
-            if (lenis) {
-                lenis.raf(time * 1000);
-                currentScroll = lenis.scroll;
-            }
-            
-            if (stickerBody) {
-                if (ground) Matter.Body.setPosition(ground, { x: window.innerWidth / 2, y: currentScroll + window.innerHeight + 30 });
-                if (ceiling) Matter.Body.setPosition(ceiling, { x: window.innerWidth / 2, y: currentScroll - 30 });
-
-                const pos = stickerBody.position;
-                gsap.set(stickerElement, {
-                    x: pos.x - (stickerSize / 2),
-                    y: pos.y - (stickerSize / 2) - currentScroll,
-                    rotation: stickerBody.angle * (180 / Math.PI)
-                });
-            }
-
-            if (window.innerWidth >= 1024) {
-                if(cursorDot) { dotXTo(mouseX); dotYTo(mouseY); }
-                if(cursorOutline) { outlineXTo(mouseX); outlineYTo(mouseY); }
-                
-                if (cursorMoon && moonTrails.length) {
-                    const angle = Math.sin(time * 1.5);
-                    const moonX = mouseX + Math.cos(time * 1.5) * orbitRadius;
-                    const moonY = mouseY + angle * orbitRadius;
-                    const scale = 0.7 + (angle + 1) * 0.15;
-                    const zIndex = angle < 0 ? 11999 : 12001;
-                    gsap.set(cursorMoon, { x: moonX, y: moonY, scale: scale, zIndex: zIndex });
-
-                    let prevX = moonX;
-                    let prevY = moonY;
-
-                    trailsXTo.forEach((t, i) => {
-                        const currentTrail = moonTrails[i];
-                        const currentX = gsap.getProperty(currentTrail, "x");
-                        const currentY = gsap.getProperty(currentTrail, "y");
-                        t(prevX);
-                        trailsYTo[i](prevY);
-                        gsap.set(currentTrail, { 
-                            opacity: 1 - (i + 1) / (moonTrails.length + 1), 
-                            scale: scale * (1 - (i+1)*0.1) 
-                        });
-                        prevX = currentX;
-                        prevY = currentY;
-                    });
-                }
-            }
+            if (lenis) lenis.raf(time * 1000);
         });
     }
 
-    // --- EJECUCIÓN DE LA FUNCIÓN PRINCIPAL ---
+    // --- EJECUCIÓN ---
     main();
 });
