@@ -664,3 +664,27 @@ body.form-modal-open .form-container { transform: scale(1); opacity: 1; }
     line-height: 1.8;
     color: var(--text-secondary-dark);
 }
+
+/* --- Corrección de Scroll para Widget de Vapi --- */
+/*
+  Basado en la estructura de Vapi, la clase del contenedor de mensajes
+  suele tener un atributo `data-testid="chat-window"`.
+  Esta regla CSS apunta a ese elemento para habilitar el scroll.
+*/
+div[data-testid="chat-window"] > div:first-child {
+    overflow-y: auto !important;
+    max-height: 50vh !important;
+}
+
+div[data-testid="chat-window"] > div:first-child::-webkit-scrollbar {
+    width: 6px;
+}
+
+div[data-testid="chat-window"] > div:first-child::-webkit-scrollbar-track {
+    background: #333;
+}
+
+div[data-testid="chat-window"] > div:first-child::-webkit-scrollbar-thumb {
+    background-color: var(--accent);
+    border-radius: 6px;
+}
