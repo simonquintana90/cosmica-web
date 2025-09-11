@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     function initEssentialUI() {
         initMobileMenu();
-        initContactModal();
+        // initContactModal(); // Función desactivada para que el formulario no se abra.
         initPricingCounter();
         initFAQAccordion();
     }
@@ -65,6 +65,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    /**
+     * Esta función ha sido comentada por completo para desactivar el formulario modal.
+     * El código se mantiene como referencia, pero ya no se ejecutará.
+     */
+    /*
     function initContactModal() {
         const ctaTriggers = document.querySelectorAll('.main-cta-trigger');
         const formOverlay = document.querySelector('.form-modal-overlay');
@@ -113,6 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+    */
 
     function initPricingCounter() {
         const minusBtn = document.getElementById('minus-lp');
