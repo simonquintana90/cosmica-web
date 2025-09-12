@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     function initEssentialUI() {
         initMobileMenu();
-        // initContactModal(); // Función desactivada para que el formulario no se abra.
         initPricingCounter();
         initFAQAccordion();
     }
@@ -64,61 +63,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-
-    /**
-     * Esta función ha sido comentada por completo para desactivar el formulario modal.
-     * El código se mantiene como referencia, pero ya no se ejecutará.
-     */
-    /*
-    function initContactModal() {
-        const ctaTriggers = document.querySelectorAll('.main-cta-trigger');
-        const formOverlay = document.querySelector('.form-modal-overlay');
-        const closeBtn = document.querySelector('.form-close-btn');
-        const form = document.getElementById('contact-form');
-        const formStatus = document.getElementById('form-status');
-
-        if (!ctaTriggers.length || !formOverlay || !closeBtn || !form) return;
-        
-        const openModal = () => document.body.classList.add('form-modal-open');
-        const closeModal = () => document.body.classList.remove('form-modal-open');
-
-        ctaTriggers.forEach(trigger => trigger.addEventListener('click', e => { e.preventDefault(); openModal(); }));
-        closeBtn.addEventListener('click', closeModal);
-        formOverlay.addEventListener('click', e => { if (e.target === formOverlay) closeModal(); });
-
-        form.addEventListener("submit", async function(event) {
-            event.preventDefault();
-            const submitButton = form.querySelector('.form-submit-btn');
-            const originalButtonText = submitButton.innerHTML;
-            submitButton.disabled = true;
-            submitButton.innerHTML = 'Enviando...';
-            formStatus.textContent = '';
-            formStatus.className = '';
-
-            try {
-                const response = await fetch(event.target.action, {
-                    method: form.method,
-                    body: new FormData(form),
-                    headers: { 'Accept': 'application/json' }
-                });
-                if (response.ok) {
-                    formStatus.textContent = "¡Gracias! Tu mensaje ha sido enviado.";
-                    formStatus.classList.add('success');
-                    form.reset();
-                    setTimeout(closeModal, 2500);
-                } else {
-                    throw new Error('Form submission failed');
-                }
-            } catch (error) {
-                formStatus.textContent = "Oops! Hubo un problema al enviar.";
-                formStatus.classList.add('error');
-            } finally {
-                submitButton.disabled = false;
-                submitButton.innerHTML = originalButtonText;
-            }
-        });
-    }
-    */
 
     function initPricingCounter() {
         const minusBtn = document.getElementById('minus-lp');
@@ -201,9 +145,14 @@ document.addEventListener('DOMContentLoaded', () => {
     
     function initScrollAnimations() {
         // Animaciones de entrada para secciones
-        gsap.utils.toArray('.usp-header, .how-it-works-header, .reviews-header, .pricing-header, .faq-header, .guarantee-content h2, .guarantee-content p, .final-cta-content h2, .final-cta-content p, .social-proof-section').forEach(el => {
+        gsap.utils.toArray('.portal-feature-header, .usp-header, .how-it-works-header, .reviews-header, .pricing-header, .faq-header, .guarantee-content h2, .guarantee-content p, .final-cta-content h2, .final-cta-content p, .social-proof-section').forEach(el => {
             gsap.from(el, { scrollTrigger: { trigger: el, start: "top 85%" }, opacity: 0, y: 50, duration: 1, ease: "power3.out" });
         });
+        
+        // Animación para nueva sección del Portal
+        gsap.from('.portal-feature-content', { scrollTrigger: { trigger: '.portal-feature-content', start: "top 85%" }, opacity: 0, x: -50, duration: 1, ease: "power3.out" });
+        gsap.from('.portal-visual', { scrollTrigger: { trigger: '.portal-visual', start: "top 85%" }, opacity: 0, scale: 0.9, duration: 1.2, ease: "expo.out" });
+
 
         gsap.utils.toArray(".usp-card").forEach(card => {
             gsap.from(card, { scrollTrigger: { trigger: card, start: "top 85%" }, opacity: 0, scale: 0.95, y: 40, duration: 0.8, ease: "expo.out" });
@@ -221,30 +170,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 duration: 0.8,
                 ease: "power3.out",
                 delay: index * 0.15
-            });
-        });
-
-        // Animación interactiva de "Cómo Funciona"
-        const steps = gsap.utils.toArray('.step-content');
-        const images = gsap.utils.toArray('.mockup-content img');
-
-        if (images.length > 0) { images[0].classList.add('active'); }
-
-        steps.forEach((step) => {
-            ScrollTrigger.create({
-                trigger: step,
-                start: "top 50%",
-                end: "bottom 50%",
-                onToggle: self => {
-                    step.classList.toggle("is-active", self.isActive);
-                    if (self.isActive) {
-                        images.forEach(img => img.classList.remove('active'));
-                        const activeImage = images.find(img => img.dataset.step === step.dataset.step);
-                        if (activeImage) {
-                            activeImage.classList.add('active');
-                        }
-                    }
-                }
             });
         });
 

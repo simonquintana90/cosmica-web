@@ -1,0 +1,96 @@
+<svg width="600" height="380" viewBox="0 0 600 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <style>
+        .font-heading { font-family: 'Satoshi', 'Inter', sans-serif; font-weight: 700; }
+        .font-body { font-family: 'Inter', sans-serif; }
+        .text-slate-900 { fill: #0F172A; }
+        .text-slate-800 { fill: #1E293B; }
+        .text-slate-700 { fill: #334155; }
+        .text-slate-600 { fill: #475569; }
+        .text-slate-500 { fill: #64748B; }
+        .text-slate-400 { fill: #94A3B8; }
+        .text-white { fill: #FFFFFF; }
+        .text-blue-200 { fill: #DBEAFE; }
+        .text-blue-600 { fill: #2563EB; }
+        .bg-white { fill: #FFFFFF; }
+        .bg-slate-50 { fill: #F8FAFC; }
+        .bg-slate-100 { fill: #F1F5F9; }
+        .bg-slate-200 { fill: #E2E8F0; }
+        .bg-blue-600 { fill: #2563EB; }
+        .stroke-slate-200 { stroke: #E2E8F0; }
+        .stroke-slate-300 { stroke: #CBD5E1; }
+    </style>
+    
+    <rect width="600" height="380" rx="16" class="bg-white stroke-slate-200" stroke-width="1"/>
+    
+    <g>
+        <rect x="20" y="20" width="220" height="340" fill="transparent"/>
+        <text x="20" y="45" class="font-body text-blue-600" font-size="12" font-weight="700">Ana</text>
+        <text class="font-heading text-slate-900" font-size="19">
+            <tspan x="20" y="70">Cambiar foto en</tspan>
+            <tspan x="20" y="90">'Sobre Nosotros'</tspan>
+        </text>
+        <text x="20" y="120" class="font-body text-slate-500" font-size="12" dy="0">
+            <tspan x="20" dy="1.2em">Hola! Adjunto la nueva foto del</tspan>
+            <tspan x="20" dy="1.2em">equipo. ¿La pueden cambiar por</tspan>
+            <tspan x="20" dy="1.2em">favor?</tspan>
+        </text>
+
+        <line x1="20" y1="185" x2="230" y2="185" class="stroke-slate-200" stroke-width="1"/>
+        
+        <text x="20" y="210" class="font-body text-slate-600" font-size="12"><tspan font-weight="700">Tipo:</tspan> Añadir/Cambiar Imagen</text>
+        <text x="20" y="230" class="font-body text-slate-600" font-size="12"><tspan font-weight="700">Estado:</tspan> Completado</text>
+    </g>
+    
+    <line x1="250" y1="0" x2="250" y2="380" class="stroke-slate-200" stroke-width="1"/>
+
+    <g>
+        <rect x="251" y="0" width="349" height="380" fill="#F8FAFC" rx="16"/>
+        
+        <g>
+            <rect x="270" y="30" width="225" height="74" rx="16" class="bg-blue-600"/>
+            <path d="M270 94 C 270 86, 262 86, 262 86 C 267 86, 270 89, 270 94 Z" fill="#2563EB"/>
+            <text class="font-body text-white" font-size="13">
+                <tspan x="282" y="50">Hola! Adjunto la nueva foto</tspan>
+                <tspan x="282" y="66">del equipo. ¿La pueden</tspan>
+                <tspan x="282" y="82">cambiar por favor?</tspan>
+            </text>
+            <text x="453" y="96" class="font-body text-blue-200" font-size="10">10:30 AM</text>
+        </g>
+        
+        <g opacity="0">
+            <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="2.5s" fill="freeze" />
+            <animateTransform attributeName="transform" type="translate" from="0 5" to="0 0" dur="0.5s" begin="1.5s" fill="freeze" additive="sum"/>
+
+            <rect x="355" y="121" width="225" height="42" rx="16" class="bg-slate-200"/>
+            <path d="M580 153 C 580 161, 588 161, 588 161 C 583 161, 580 158, 580 153 Z" fill="#E2E8F0"/>
+            <text class="font-body text-slate-800" font-size="13">
+                <tspan x="367" y="141">¡Claro que sí, Ana! Ya mismo</tspan>
+                <tspan x="367" y="157">la actualizamos.</tspan>
+            </text>
+            <text x="367" y="121" class="font-body text-slate-500" font-size="10" dy="-4"><tspan font-weight="700">Cósmica</tspan> - 10:31 AM</text>
+        </g>
+
+        <g opacity="0">
+            <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="3.5s" fill="freeze" />
+            <animateTransform attributeName="transform" type="translate" from="0 5" to="0 0" dur="0.5s" begin="3.5s" fill="freeze" additive="sum"/>
+            
+            <rect x="355" y="188" width="225" height="58" rx="16" class="bg-slate-200"/>
+            <path d="M580 236 C 580 244, 588 244, 588 244 C 583 244, 580 241, 580 236 Z" fill="#E2E8F0"/>
+            <text class="font-body text-slate-800" font-size="13">
+                <tspan x="367" y="208">Listo, el cambio ha sido realizado.</tspan>
+                <tspan x="367" y="224">Puedes verlo en la página. ✅</tspan>
+            </text>
+            <text x="367" y="188" class="font-body text-slate-500" font-size="10" dy="-4"><tspan font-weight="700">Cósmica</tspan> - 10:35 AM</text>
+        </g>
+        
+        <g>
+            <rect x="251" y="320" width="349" height="60" fill="#FFFFFF"/>
+            <rect x="270" y="331" width="270" height="38" rx="19" class="bg-white stroke-slate-300" stroke-width="1"/>
+            <text x="285" y="355" class="font-body text-slate-400" font-size="13">Escribe un mensaje...</text>
+            <g transform="translate(550, 332)">
+                <circle cx="16" cy="16" r="16" fill="#2563EB"/>
+                <polygon points="14,12 22,16 14,20" fill="white"/>
+            </g>
+        </g>
+    </g>
+</svg>

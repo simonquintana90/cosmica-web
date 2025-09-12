@@ -28,7 +28,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-body.mobile-menu-open, body.form-modal-open {
+body.mobile-menu-open {
     overflow: hidden !important;
 }
 
@@ -170,7 +170,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 @media (min-width: 1024px) {
     .hero-content-wrapper {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 0.8fr 1fr;
     }
 }
 .hero-content { text-align: center; }
@@ -216,8 +216,7 @@ h1, h2, h3, h4, h5, h6 {
 .hero-visual-placeholder {
     position: relative;
     width: 100%;
-    aspect-ratio: 1/1;
-    max-width: 500px;
+    max-width: 600px;
     margin: 0 auto;
     border-radius: 24px;
     overflow: hidden; 
@@ -290,181 +289,138 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* --- Secciones Generales --- */
-.usp-section, .how-it-works-section, .about-manifesto-section, .reviews-section, .guarantee-section, .pricing-section, .faq-section, .final-cta-section, .legal-content-section {
+.portal-feature-section, .usp-section, .how-it-works-section, .about-manifesto-section, .reviews-section, .guarantee-section, .pricing-section, .faq-section, .final-cta-section, .legal-content-section {
     padding: 8rem 2rem;
 }
 @media (max-width: 767px) {
-    .usp-section, .how-it-works-section, .about-manifesto-section, .reviews-section, .guarantee-section, .pricing-section, .faq-section, .final-cta-section, .legal-content-section {
+    .portal-feature-section, .usp-section, .how-it-works-section, .about-manifesto-section, .reviews-section, .guarantee-section, .pricing-section, .faq-section, .final-cta-section, .legal-content-section {
         padding: 5rem 1.5rem;
     }
 }
-.usp-header, .how-it-works-header, .reviews-header, .pricing-header, .faq-header {
+.portal-feature-header, .usp-header, .how-it-works-header, .reviews-header, .pricing-header, .faq-header, .about-manifesto-header {
     text-align: center; max-width: 750px; margin: 0 auto 5rem auto;
 }
-.usp-header h2, .how-it-works-header h2, .reviews-header h2, .pricing-header h2, .faq-header h2 {
+.portal-feature-header h2, .usp-header h2, .how-it-works-header h2, .reviews-header h2, .pricing-header h2, .faq-header h2, .about-manifesto-header h2 {
     font-size: clamp(2.5rem, 5vw, 3.5rem); line-height: 1.2; margin-bottom: 1rem;
 }
-.usp-header p, .how-it-works-header p, .reviews-header p, .pricing-header p, .faq-header p {
+.portal-feature-header p, .usp-header p, .how-it-works-header p, .reviews-header p, .pricing-header p, .faq-header p, .about-manifesto-header p {
     font-size: clamp(1rem, 2.5vw, 1.125rem); color: var(--text-secondary-dark); line-height: 1.6; max-width: 600px; margin: 0 auto;
 }
 
-/* USP Section */
+
+/* AJUSTE 1: ESTILOS PARA LA NUEVA SECCIÓN PROTAGONISTA */
+.portal-feature-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.portal-feature-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 5rem;
+}
+.portal-benefits-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+.portal-benefits-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+.portal-benefits-list iconify-icon {
+    color: var(--accent);
+    font-size: 1.5rem;
+    margin-top: 0.25rem;
+}
+.portal-benefits-list h3 {
+    font-size: 1.25rem;
+    font-family: var(--font-heading);
+    margin-bottom: 0.5rem;
+}
+.portal-benefits-list p {
+    color: var(--text-secondary-dark);
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+@media (max-width: 1023px) {
+    .portal-feature-grid {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+    }
+    .portal-visual {
+        order: -1; /* Muestra la imagen primero en móvil */
+    }
+}
+
+
+/* USP Section & How It Works (Reutilizando estilos) */
 .usp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; }
 .usp-card { background-color: transparent; border: 1px solid var(--border-light); border-radius: 20px; padding: 2rem; transition: transform 0.3s ease, box-shadow 0.3s ease; }
 .usp-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px -15px rgba(0,0,0,0.08); background-color: white; }
-.usp-card .icon { font-size: 2rem; color: var(--accent); margin-bottom: 1.5rem; display: inline-block; }
+.usp-card .icon { font-size: 2.5rem; color: var(--accent); margin-bottom: 1.5rem; display: inline-block; }
 .usp-card h3 { font-size: 1.25rem; font-family: 'Satoshi', sans-serif; margin-bottom: 0.75rem; }
 .usp-card p { color: var(--text-secondary-dark); line-height: 1.6; font-size: 0.95rem; }
 
-/* How It Works Section */
-.how-it-works-container {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 5rem;
-    max-width: 1100px;
-    margin: 0 auto;
-    align-items: flex-start;
-}
-@media (min-width: 1024px) {
-    .how-it-works-container {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-.how-it-works-steps {
-    display: flex;
-    flex-direction: column;
-    gap: 4rem;
-}
-@media (min-width: 1024px) {
-    .how-it-works-steps {
-        /* height: 150vh; */
-    }
-}
-.step-content {
-    opacity: 0.4;
-    transition: opacity 0.4s ease;
-}
-.step-content.is-active {
-    opacity: 1;
-}
-.step-number {
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--accent);
-    margin-bottom: 1rem;
-    display: block;
-}
-.step-content h3 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-}
-.step-content p {
-    color: var(--text-secondary-dark);
-    line-height: 1.7;
-    max-width: 450px;
-}
-.how-it-works-visuals {
-    position: sticky;
-    top: 120px;
-    height: fit-content;
-}
-.mockup-header {
-    padding: 0.75rem;
-    border-bottom: 1px solid var(--border-light);
-}
-.mockup-dots {
-    display: flex;
-    gap: 0.5rem;
-}
-.mockup-dots .dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-}
-.dot.red { background-color: #FF5F56; }
-.dot.yellow { background-color: #FFBD2E; }
-.dot.green { background-color: #27C93F; }
 
-.mockup-content {
-    padding: 1rem;
+/* --- "About Us" (Manifiesto) con diseño Temático --- */
+.about-manifesto-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+.about-manifesto-header { 
+    margin-bottom: 4rem !important; 
+}
+
+.manifesto-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
     position: relative;
 }
-.mockup-content img {
-    width: 100%;
-    display: none;
-    border-radius: 4px;
-}
-.mockup-content img.active {
-    display: block;
-}
-
-
-/* --- Nueva Sección "About Us" (Manifiesto) --- */
-.about-manifesto-section {
-    background-color: #F3F4F6;
-}
-
-.about-manifesto-container {
-    max-width: 800px;
-    margin: 0 auto;
+.manifesto-column {
+    padding: 2.5rem;
+    border-radius: 20px;
     text-align: center;
 }
-
-.about-manifesto-header h2 {
-    font-size: clamp(2.5rem, 5vw, 3.5rem);
-    line-height: 1.2;
-    margin-bottom: 5rem;
+.manifesto-column .manifesto-icon {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    display: inline-block;
+}
+.manifesto-column h3 { 
+    font-size: 1.5rem; 
+    margin-bottom: 0.75rem; 
+}
+.manifesto-column p { 
+    font-size: 1.05rem; 
+    line-height: 1.7; 
+    max-width: 320px; 
+    margin: 0 auto;
 }
 
-.manifesto-steps {
-    display: flex;
-    flex-direction: column;
-    gap: 4rem;
-    position: relative;
-    text-align: left;
-    border-left: 2px solid var(--border-light);
-    padding-left: 3rem;
-}
-
-.manifesto-step {
-    display: flex;
-    align-items: flex-start;
-    gap: 2rem;
-}
-
-.manifesto-icon {
-    font-size: 2.5rem;
-    color: var(--accent);
-    background-color: white;
-    padding: 0.5rem;
-    border-radius: 12px;
+.problem-side {
+    background-color: #F3F4F6;
     border: 1px solid var(--border-light);
-    margin-top: -0.25rem;
-    flex-shrink: 0;
 }
+.problem-side .manifesto-icon { color: #9CA3AF; }
+.problem-side h3 { color: var(--text-dark); }
+.problem-side p { color: var(--text-secondary-dark); }
 
-.manifesto-content h3 {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-    font-family: var(--font-heading);
+.solution-side {
+    background-color: var(--accent-light);
+    border: 1px solid #93C5FD;
 }
-
-.manifesto-content p {
-    font-size: 1.1rem;
-    color: var(--text-secondary-dark);
-    line-height: 1.7;
-}
+.solution-side .manifesto-icon { color: var(--accent); }
+.solution-side h3 { color: var(--accent-darker); }
+.solution-side p { color: #1E40AF; }
 
 @media (max-width: 767px) {
-    .manifesto-steps {
-        padding-left: 1.5rem;
-        gap: 3rem;
-    }
-    .manifesto-step {
+    .manifesto-grid {
+        grid-template-columns: 1fr;
         gap: 1.5rem;
-    }
-    .about-manifesto-header h2 {
-        margin-bottom: 4rem;
     }
 }
 
@@ -539,26 +495,6 @@ h1, h2, h3, h4, h5, h6 {
 .footer-bottom { border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 2rem; display: flex; justify-content: center; align-items: center; gap: 0.5rem; color: rgba(250, 250, 250, 0.5); font-size: 0.9rem; }
 .footer-bottom img { height: 20px; }
 
-/* Form Modal */
-.form-modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(17, 24, 39, 0.7); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); z-index: 11000; opacity: 0; pointer-events: none; transition: opacity 0.4s ease; display: flex; align-items: center; justify-content: center; padding: 1rem; }
-body.form-modal-open .form-modal-overlay { opacity: 1; pointer-events: auto; }
-.form-container { background-color: var(--card-bg-light); padding: 2.5rem; border-radius: 20px; width: 100%; max-width: 500px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); transform: scale(0.95); opacity: 0; transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1); max-height: 90vh; overflow-y: auto; position: relative; }
-body.form-modal-open .form-container { transform: scale(1); opacity: 1; }
-.form-container h3 { font-size: 1.8rem; margin-bottom: 0.5rem; text-align: center; }
-.form-container p { color: var(--text-secondary-dark); text-align: center; margin-bottom: 2rem; }
-.form-close-btn { position: absolute; top: 1rem; right: 1rem; background: transparent; border: none; font-size: 1.5rem; color: var(--text-secondary-dark); cursor: pointer; transition: color 0.3s ease; }
-.form-close-btn:hover { color: var(--text-dark); }
-.form-group { margin-bottom: 1.25rem; }
-.form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; font-size: 0.9rem; color: var(--text-secondary-dark); }
-.form-group input, .form-group select { width: 100%; padding: 0.8rem 1rem; border: 1px solid var(--border-light); border-radius: 8px; font-size: 1rem; font-family: var(--font-body); transition: border-color 0.3s ease, box-shadow 0.3s ease; background-color: white; }
-.form-group select { -webkit-appearance: none; -moz-appearance: none; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%236B7280' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708 .708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; background-size: 1em; }
-.form-group input:focus, .form-group select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2); }
-.form-submit-btn { width: 100%; padding: 1rem; border: none; border-radius: 8px; background-color: var(--accent); color: white; font-size: 1rem; font-weight: 700; font-family: var(--font-body); cursor: pointer; transition: all 0.3s ease; margin-top: 1rem; }
-.form-submit-btn:hover { background-color: var(--accent-darker); transform: translateY(-2px); }
-#form-status { text-align: center; margin-top: 1rem; font-weight: 700; }
-#form-status.success { color: #16a34a; }
-#form-status.error { color: #dc2626; }
-
 /* --- Mejoras de Tipografía con Text Wrap --- */
 .hero-title,
 .usp-header h2, 
@@ -567,6 +503,7 @@ body.form-modal-open .form-container { transform: scale(1); opacity: 1; }
 .pricing-header h2, 
 .faq-header h2,
 .about-manifesto-header h2,
+.portal-feature-header h2,
 .guarantee-title,
 .final-cta-content h2 {
     text-wrap: balance;
@@ -576,8 +513,9 @@ body.form-modal-open .form-container { transform: scale(1); opacity: 1; }
 .usp-header p,
 .how-it-works-header p,
 .usp-card p,
-.step-content p,
 .manifesto-content p,
+.portal-feature-header p,
+.portal-benefits-list p,
 .review-quote,
 .guarantee-text,
 .faq-answer p,

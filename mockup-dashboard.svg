@@ -1,0 +1,82 @@
+<svg width="800" height="580" viewBox="0 0 800 580" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <style>
+        .font-heading { font-family: 'Satoshi', 'Inter', sans-serif; font-weight: 700; }
+        .font-body { font-family: 'Inter', sans-serif; }
+        .text-slate-900 { fill: #0F172A; }
+        .text-slate-800 { fill: #1E293B; }
+        .text-slate-700 { fill: #334155; }
+        .text-slate-600 { fill: #475569; }
+        .text-slate-500 { fill: #64748B; }
+        .text-slate-400 { fill: #94A3B8; }
+        .text-green-800 { fill: #166534; }
+        .text-amber-800 { fill: #92400E; }
+        .bg-white { fill: #FFFFFF; }
+        .bg-slate-50 { fill: #F8FAFC; }
+        .bg-slate-100 { fill: #F1F5F9; }
+        .stroke-slate-200 { stroke: #E2E8F0; }
+    </style>
+    <rect width="800" height="580" rx="16" class="bg-slate-50"/>
+
+    <text x="30" y="65" class="font-heading text-slate-900" font-size="28">Hola, Ana 👋</text>
+    <text x="30" y="88" class="font-body text-slate-500" font-size="14">Bienvenida a tu centro de control.</text>
+
+    <rect x="30" y="120" width="360" height="80" rx="16" class="bg-white stroke-slate-200" stroke-width="1"/>
+    <rect x="410" y="120" width="360" height="80" rx="16" class="bg-white stroke-slate-200" stroke-width="1"/>
+    
+    <g transform="translate(50, 140)">
+        <rect width="40" height="40" rx="20" fill="#FEF3C7"/>
+        <g transform="translate(10, 10)">
+            <path d="M10 20C4.47715 20 0 15.5228 0 10C0 4.47715 4.47715 0 10 0C15.5228 0 20 4.47715 20 10C20 15.5228 15.5228 20 10 20Z" fill="none" stroke="#D97706" stroke-width="1.7"/>
+            <path d="M10 4V10L13 13" stroke="#D97706" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+    </g>
+    <text x="105" y="155" class="font-body text-slate-500" font-size="13">Solicitudes Activas</text>
+    <text x="105" y="178" class="font-heading text-slate-900" font-size="22">1</text>
+    
+    <g transform="translate(430, 140)">
+        <rect width="40" height="40" rx="20" fill="#DCFCE7"/>
+        <g transform="translate(10, 10)">
+            <path d="M10 20C4.47715 20 0 15.5228 0 10C0 4.47715 4.47715 0 10 0C15.5228 0 20 4.47715 20 10C20 15.5228 15.5228 20 10 20Z" stroke="#16A34A" stroke-width="1.7"/>
+            <path d="M7.5 10L9.5 12L13.5 8" stroke="#16A34A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+    </g>
+    <text x="485" y="155" class="font-body text-slate-500" font-size="13">Completadas</text>
+    <text x="485" y="178" class="font-heading text-slate-900" font-size="22">5</text>
+    
+    <g>
+        <rect x="30" y="220" width="460" height="330" rx="16" class="bg-white stroke-slate-200" stroke-width="1"/>
+        <text x="50" y="255" class="font-heading text-slate-900" font-size="18">Nueva Solicitud de Cambio</text>
+        <text x="50" y="275" class="font-body text-slate-500" font-size="13">Describe el cambio que necesitas para tu página.</text>
+        <text x="50" y="308" class="font-body text-slate-600" font-size="12" font-weight="500">Título del Cambio</text>
+        <rect x="50" y="315" width="420" height="38" rx="8" class="bg-white stroke-slate-200" stroke-width="1.5"/>
+        <text x="60" y="339" class="font-body text-slate-400" font-size="13">Ej: Cambiar número de teléfono</text>
+        <text x="50" y="368" class="font-body text-slate-600" font-size="12" font-weight="500">Descripción Detallada</text>
+        <rect x="50" y="375" width="420" height="90" rx="8" class="bg-white stroke-slate-200" stroke-width="1.5"/>
+        <rect x="340" y="485" width="130" height="40" rx="8" fill="#2563EB"/>
+        <text x="405" y="510" class="font-body" font-size="13" font-weight="700" fill="white" text-anchor="middle">Enviar Solicitud</text>
+    </g>
+
+    <g>
+        <rect x="510" y="220" width="260" height="330" rx="16" class="bg-white stroke-slate-200" stroke-width="1"/>
+        <text x="530" y="250" class="font-heading text-slate-900" font-size="16">Mis Solicitudes</text>
+        
+        <g>
+            <rect x="520" y="270" width="240" height="50" rx="8" class="bg-slate-100"/>
+            <text x="530" y="298" class="font-body text-slate-700" font-size="13" font-weight="600">Actualizar fotos</text>
+            <rect x="675" y="285" width="75" height="20" rx="10" fill="#FEF3C7"/>
+            <text x="712.5" y="299" class="font-body text-amber-800" font-size="10" font-weight="700" text-anchor="middle">Pendiente</text>
+        </g>
+        <g>
+            <rect x="520" y="325" width="240" height="50" rx="8" fill="transparent"/>
+            <text x="530" y="353" class="font-body text-slate-700" font-size="13" font-weight="600">Corregir teléfono</text>
+            <rect x="675" y="340" width="75" height="20" rx="10" fill="#DCFCE7"/>
+            <text x="712.5" y="354" class="font-body text-green-800" font-size="10" font-weight="700" text-anchor="middle">Completado</text>
+        </g>
+        <g>
+            <rect x="520" y="380" width="240" height="50" rx="8" fill="transparent"/>
+            <text x="530" y="408" class="font-body text-slate-700" font-size="13" font-weight="600">Añadir testimonio</text>
+            <rect x="675" y="395" width="75" height="20" rx="10" fill="#DCFCE7"/>
+            <text x="712.5" y="409" class="font-body text-green-800" font-size="10" font-weight="700" text-anchor="middle">Completado</text>
+        </g>
+    </g>
+</svg>
