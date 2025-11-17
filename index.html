@@ -31,49 +31,78 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    
+    <div class="form-modal-overlay">
+        <div class="form-container">
+            <button class="form-close-btn">
+                <iconify-icon icon="ph:x-bold"></iconify-icon>
+            </button>
+            <h3>Hablemos de tu proyecto</h3>
+            <p>Completa el formulario y te contactaremos pronto.</p>
+            
+            <form id="contact-form" action="https://formspree.io/f/xvgqdvyg" method="POST">
+                <div class="form-group">
+                    <label for="name">Nombre</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="lastname">Apellido</label>
+                    <input type="text" id="lastname" name="lastname" required>
+                </div>
+                <div class="form-group">
+                    <label for="whatsapp">WhatsApp</label>
+                    <input type="tel" id="whatsapp" name="whatsapp" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="additional-lps">¿Necesitas Landing Pages adicionales?</label>
+                    <select id="additional-lps" name="landing_pages_adicionales">
+                        <option value="No">No</option>
+                        <option value="Sí">Sí</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="form-submit-btn">Enviar Mensaje</button>
+            </form>
+            <div id="form-status"></div>
+        </div>
+    </div>
 
     <div class="page-wrapper">
         <nav class="navbar">
+            <a href="#" class="nav-logo"><img src="https://assets-global.website-files.com/68026a0651df0f492c75ff17/680528ad858ac75ca9598b70_CO%CC%81SMICA_Logo_N.avif" alt="Logo Cósmica"></a>
             <a href="https://www.cosmicaweb.com" class="nav-logo"><img src="https://assets-global.website-files.com/68026a0651df0f492c75ff17/680528ad858ac75ca9598b70_CO%CC%81SMICA_Logo_N.avif" alt="Logo Cósmica"></a>
             
             <div class="nav-right">
                 <div class="nav-links">
-                    <a href="#how-it-works">Cómo Funciona</a>
-                    <a href="#pricing-section">Precios</a>
-                    <a href="#about-section">Sobre Nosotros</a>
+@ -84,7 +44,7 @@
                 </div>
                 <div class="nav-actions">
                     <a href="https://app.cosmicaweb.com" target="_blank" class="nav-login-button">Login</a>
+                    <a href="https://app.cosmicaweb.com" class="nav-cta-button main-cta-trigger">Crear mi página web</a>
                     <a href="https://app.cosmicaweb.com" class="nav-cta-button">Empezar Ahora</a>
                 </div>
             </div>
 
-            <button class="nav-toggle-button">
-                <span class="line line-1"></span>
-                <span class="line line-2"></span>
-                <span class="line line-3"></span>
-            </button>
-        </nav>
-        
-        <div class="mobile-nav-menu">
-            <div class="nav-links">
-                <a href="#how-it-works">Cómo Funciona</a>
-                <a href="#pricing-section">Precios</a>
-                <a href="#about-section">Sobre Nosotros</a>
+@ -103,7 +63,7 @@
             </div>
             <div class="nav-actions">
                 <a href="https://app.cosmicaweb.com" target="_blank" class="nav-login-button">Login</a>
+                <a href="https://app.cosmicaweb.com" class="nav-cta-button main-cta-trigger">Crear mi página web</a>
                 <a href="https://app.cosmicaweb.com" class="nav-cta-button">Empezar Ahora</a>
             </div>
             <button class="mobile-close-button">Cerrar</button>
         </div>
-
-        <main>
-            <section class="hero-section">
-                <div class="hero-content-wrapper">
+@ -114,14 +74,14 @@
                     <div class="hero-content">
                         <h1 class="hero-title">Tu web siempre al día, sin esfuerzo.</h1>
                         <p class="hero-subtitle">Creamos tu página y te damos un portal de cliente para que solicitar cambios sea tan fácil como enviar un mensaje.</p>
+                        <a href="https://app.cosmicaweb.com" class="hero-cta-button hero-main-cta main-cta-trigger">
+                            <span>Empieza tu proyecto</span>
                         <a href="https://app.cosmicaweb.com" class="hero-cta-button hero-main-cta">
                             <span>Empezar Ahora</span>
                             <iconify-icon icon="ph:arrow-right-bold"></iconify-icon>
@@ -81,21 +110,32 @@
                     </div>
                     <div class="hero-visual-placeholder">
                         <div class="hero-grid-bg"></div>
+                        <img src="https://cdn.prod.website-files.com/68026a0651df0f492c75ff17/68be2702efd7a3a8ab664ad2_Hero-image-conectar.avif" alt="Visualización de la plataforma Cósmica en un dispositivo móvil">
                         <img src="mockup-hero-chat.svg" alt="Ejemplo de la comunicación fluida en la plataforma Cósmica para solicitar cambios web.">
                     </div>
                 </div>
             </section>
-            
-            <section class="social-proof-section">
-                <p>CON LA CONFIANZA DE EMPRESAS INNOVADORAS</p>
-                <div class="logos-container">
-                    <div class="logo-item"><img src="https://cdn.prod.website-files.com/68026a0651df0f492c75ff17/68bef9282cafd8441144a2ba_Creha-Studio-Logo.avif" alt="Logo de Creha Studio"></div>
-                    <div class="logo-item"><img src="https://cdn.prod.website-files.com/68026a0651df0f492c75ff17/68befca2e39637ee55e36115_fm-inm-logo.avif" alt="Logo de FM Inmobiliaria"></div>
-                    <div class="logo-item"><img src="https://cdn.prod.website-files.com/68026a0651df0f492c75ff17/68befe5206e92e1845a9e063_Galla-Logo.avif" alt="Logo de Galla"></div>
-                    <div class="logo-item"><img src="https://cdn.prod.website-files.com/68026a0651df0f492c75ff17/68beffe404b51fa61ad07c4a_Que-buen-corazo%CC%81n-logo.avif" alt="Logo de Qué Buen Corazón"></div>
+@ -136,66 +96,66 @@
                     <div class="logo-item"><img src="https://cdn.prod.website-files.com/68026a0651df0f492c75ff17/68bf00408556f27ae13781b3_Soy-Tribu-Logo.avif" alt="Logo de Soy Tribu"></div>
                 </div>
             </section>
+
+
+            <section class="usp-section">
+                <div class="usp-header">
+                    <h2>Adiós a los dolores de cabeza. Hola a la agilidad.</h2>
+                    <p>Nuestro proceso está diseñado para darte resultados rápidos y eficientes, liberándote de las complicaciones técnicas para que puedas enfocarte en tu negocio.</p>
+                </div>
+                <div class="usp-grid">
+                    <div class="usp-card">
+                        <iconify-icon class="icon" icon="solar:archive-down-minimlistic-broken"></iconify-icon>
+                        <h3>1. Pide tu cambio</h3>
+                        <p>Entra a tu portal de cliente y describe lo que necesitas. Tan fácil como enviar un mensaje.</p>
+                    </div>
+                    <div class="usp-card">
+                        <iconify-icon class="icon" icon="solar:archive-outline"></iconify-icon>
+                        <h3>2. Recibimos tu solicitud</h3>
+                        <p>Nuestro equipo es notificado al instante. Nos ponemos en marcha sin demoras ni intermediarios.</p>
             
             <section class="portal-feature-section">
                 <div class="portal-feature-container">
@@ -103,6 +143,10 @@
                         <h2>Un Portal Exclusivo para Tu Tranquilidad.</h2>
                         <p>El valor de Cósmica no es solo una página web, es la experiencia post-lanzamiento. Te damos control, eficiencia y comunicación centralizada a través de una herramienta única.</p>
                     </div>
+                    <div class="usp-card">
+                        <iconify-icon class="icon" icon="solar:archive-minimalistic-broken"></iconify-icon>
+                        <h3>3. Cambio realizado</h3>
+                        <p>Implementamos el ajuste en tiempo récord y te avisamos cuando esté listo. Así de simple.</p>
                     <div class="portal-feature-grid">
                         <div class="portal-feature-content">
                             <ul class="portal-benefits-list">
@@ -138,15 +182,45 @@
 
             <section class="how-it-works-section" id="how-it-works">
                 <div class="how-it-works-header">
+                    <h2>Así de fácil es gestionar tu web.</h2>
+                    <p>Nuestro portal de cliente está diseñado para que pedir un cambio sea tan simple como enviar un mensaje.</p>
                     <h2>Nuestro Proceso, Tu Claridad.</h2>
                     <p>Gestionamos tus expectativas desde el primer momento con un flujo estructurado que garantiza resultados.</p>
                 </div>
+                <div class="how-it-works-container">
+                    <div class="how-it-works-steps">
+                        <div class="step-content" data-step="1">
+                            <span class="step-number">01</span>
+                            <h3>Crea tu Cuenta y Empieza</h3>
+                            <p>Una vez te unes a Cósmica, te damos acceso a tu portal personal. Aquí es donde comienza la magia y donde tendrás el control total de tu universo digital.</p>
+                        </div>
+                        <div class="step-content" data-step="2">
+                            <span class="step-number">02</span>
+                            <h3>Solicita Cambios al Instante</h3>
+                            <p>¿Necesitas cambiar un texto, una imagen o añadir una nueva sección? Simplemente describe tu solicitud en el portal. Sin correos, sin llamadas, sin complicaciones.</p>
+                        </div>
+                         <div class="step-content" data-step="3">
+                            <span class="step-number">03</span>
+                            <h3>Recibe y Confirma</h3>
+                            <p>Nuestro equipo recibe tu solicitud al instante y se pone a trabajar. Te notificamos por correo cuando hemos recibido tu cambio y muy pronto lo verás reflejado en tu web.</p>
+                        </div>
                 <div class="usp-grid">
                     <div class="usp-card">
                         <iconify-icon class="icon" icon="solar:card-2-linear"></iconify-icon>
                         <h3>1. Pago Único de Construcción</h3>
                         <p>Realizas una única inversión inicial para que nuestro equipo construya y configure tu nuevo sitio web profesional.</p>
                     </div>
+                    <div class="how-it-works-visuals">
+                        <div class="mockup-window">
+                             <div class="mockup-header">
+                                <div class="mockup-dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+                            </div>
+                            <div class="mockup-content">
+                                <img src="https://cdn.prod.website-files.com/68026a0651df0f492c75ff17/68bf05d34a0ec48dbba51af8_Inicio-sesio%CC%81n-web-plataforma.avif" alt="Crear cuenta en el portal de cliente Cósmica" data-step="1" class="active">
+                                <img src="https://cdn.prod.website-files.com/68026a0651df0f492c75ff17/68bf09899ccc49fcf2702370_Mensajes-enviados.png" alt="Solicitar un cambio en la plataforma" data-step="2">
+                                <img src="https://cdn.prod.website-files.com/68026a0651df0f492c75ff17/68bf0a09133c11b36ec110d8_Notificaciones.png" alt="Confirmación de solicitud de cambio recibida" data-step="3">
+                            </div>
+                        </div>
                     <div class="usp-card">
                         <iconify-icon class="icon" icon="solar:document-add-linear"></iconify-icon>
                         <h3>2. Formulario Guiado</h3>
@@ -159,20 +233,23 @@
                     </div>
                 </div>
             </section>
-            
-            <section class="about-manifesto-section" id="about-section">
+@ -204,33 +164,25 @@
                 <div class="about-manifesto-container">
                     <div class="about-manifesto-header">
                         <h2>Nacimos para cambiar las reglas.</h2>
+                        <p>Pasamos de un modelo frustrante a una solución que te da tranquilidad y resultados.</p>
                     </div>
                     <div class="manifesto-steps">
                         <div class="manifesto-step">
+                    <div class="manifesto-grid">
+                        <div class="manifesto-column problem-side">
                             <div class="manifesto-icon">
                                 <iconify-icon icon="solar:bone-broken-broken"></iconify-icon>
                             </div>
                             <div class="manifesto-content">
                                 <h3>El Modelo Roto</h3>
                                 <p>Detectamos un problema frustrante y común: agencias y freelancers que dejan a los clientes con promesas incumplidas, comunicación deficiente y resultados que no justifican la inversión.</p>
+                                <p>Agencias y freelancers que dejan a los clientes con promesas incumplidas, comunicación deficiente y malos resultados.</p>
                             </div>
                         </div>
                         <div class="manifesto-step">
@@ -185,98 +262,41 @@
                             </div>
                         </div>
                         <div class="manifesto-step">
+                        <div class="manifesto-column solution-side">
                             <div class="manifesto-icon">
                                 <iconify-icon icon="solar:bone-outline"></iconify-icon>
                             </div>
                             <div class="manifesto-content">
                                 <h3>Tu Equipo Dedicado</h3>
                                 <p>Por eso creamos un modelo de soporte mensual. En lugar de un proyecto único, nos convertimos en tu equipo de desarrollo a largo plazo, asegurando que tu web evolucione y crezca contigo.</p>
+                                <p>Nos convertimos en tu equipo a largo plazo, asegurando que tu web evolucione y crezca contigo.</p>
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
-
-            <section class="reviews-section">
-                <div class="reviews-header">
-                    <h2>Páginas reales, resultados reales.</h2>
-                </div>
-                <div class="reviews-marquee">
-                    <div class="reviews-marquee-row"></div>
-                </div>
-            </section>
-
-            <section class="guarantee-section">
-                <div class="guarantee-container">
-                    <div class="guarantee-content">
-                        <h2 class="guarantee-title">Garantía de satisfacción.</h2>
-                        <p class="guarantee-text">Confiamos tanto en nuestro trabajo que si no estás 100% satisfecho con el resultado final, trabajamos hasta que lo estés. Tu éxito es nuestra reputación.</p>
-                    </div>
-                </div>
-            </section>
-
-            <section class="pricing-section" id="pricing-section">
-                <div class="pricing-header">
-                    <h2>Un plan simple y transparente.</h2>
-                </div>
-                <div class="pricing-card">
-                    <div class="price-display">
-                        <h3 class="price-amount" id="main-price-amount">$89.900<span>/mes</span></h3>
-                        <p class="price-setup-fee">Sin contratos a térmios fijos.</p>
-                    </div>
-                    <div class="pricing-addons">
-                        <div class="addon-item">
-                            <div class="addon-label-wrapper">
-                                <span class="addon-label">Landing Page Adicional</span>
-                                <div class="info-tooltip-wrapper">
-                                    <iconify-icon class="info-icon" icon="solar:info-circle-linear"></iconify-icon>
-                                    <div class="tooltip-box">
-                                        Las Landing Pages se usan para promocionar ubicaciones o servicios específicos.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="lp-counter">
-                                <button class="counter-btn" id="minus-lp">-</button>
-                                <span id="lp-count">0</span>
-                                <button class="counter-btn" id="plus-lp">+</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="features-list">
-                        <h3>Incluye:</h3>
-                        <ul>
-                            <li><iconify-icon icon="solar:check-circle-bold"></iconify-icon>Página web con estructura SEO</li>
-                            <li><iconify-icon icon="solar:check-circle-bold"></iconify-icon>Cambios web ilimitados</li>
-                            <li><iconify-icon icon="solar:check-circle-bold"></iconify-icon>No pagas por hosting</li>
-                            <li><iconify-icon icon="solar:check-circle-bold"></iconify-icon>Soporte personal</li>
+@ -292,7 +244,7 @@
                             <li id="landing-page-feature" style="display: none; opacity: 0;"><iconify-icon icon="solar:check-circle-bold"></iconify-icon>Landing Pages Adicionales</li>
                         </ul>
                     </div>
+                    <a href="https://app.cosmicaweb.com" id="pricing-cta-button" class="hero-cta-button pricing-cta main-cta-trigger" style="width: 100%; text-align: center; justify-content: center;">Crear mi página web</a>
                     <a href="https://app.cosmicaweb.com" id="pricing-cta-button" class="hero-cta-button pricing-cta" style="width: 100%; text-align: center; justify-content: center;">Empezar Ahora</a>
                 </div>
             </section>
 
-            <section class="faq-section">
-                <div class="faq-header">
-                    <h2>Preguntas Frecuentes.</h2>
-                </div>
-                <div class="faq-container">
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            <h3>¿Cuánto tiempo toma construir mi página web?</h3>
+@ -307,7 +259,7 @@
                             <iconify-icon class="faq-icon" icon="ph:plus-bold"></iconify-icon>
                         </div>
                         <div class="faq-answer">
-                            <p>El proceso de construcción inicial, una vez entregada toda la información, suele tomar entre 1 y 2 semanas. La activación de tu suscripción y el acceso al portal de cambios se da inmediatamente después.</p>
+                            <p>El proceso de diseño y desarrollo de una página web estándar suele tomar entre 2 y 4 semanas, desde la reunión inicial hasta el lanzamiento. Este tiempo puede variar según la complejidad y la cantidad de contenido.</p>
+                            <p>El proceso de diseño y desarrollo de una página web estándar suele tomar entre 2 y 4 semanas, desde la entrega de la información hasta el lanzamiento.</p>
                         </div>
                     </div>
                     <div class="faq-item">
-                        <div class="faq-question">
-                            <h3>¿Necesito tener mi propio hosting o dominio?</h3>
+@ -316,16 +268,25 @@
                             <iconify-icon class="faq-icon" icon="ph:plus-bold"></iconify-icon>
                         </div>
                         <div class="faq-answer">
-                            <p>No, ¡nosotros nos encargamos de todo! Nuestros planes incluyen hosting de alta velocidad. Si no tienes un dominio, te ayudamos a adquirirlo y configurarlo.</p>
+                            <p>No, ¡nosotros nos encargamos de todo! Nuestros planes incluyen hosting de alta velocidad y la gestión de tu dominio, para que no tengas que preocuparte por los detalles técnicos.</p>
+                            <p>Nuestros planes incluyen hosting de alta velocidad. Si no tienes un dominio, te damos asesoría para adquirirlo o, si lo requieres, lo podemos adquirir por ti.</p>
                         </div>
                     </div>
                     <div class="faq-item">
@@ -285,27 +305,31 @@
                             <iconify-icon class="faq-icon" icon="ph:plus-bold"></iconify-icon>
                         </div>
                         <div class="faq-answer">
-                            <p>Significa que puedes solicitar actualizaciones de texto, imágenes, colores, o pequeños ajustes de diseño a través de tu portal en cualquier momento, sin costo adicional. No incluye la creación de secciones o funcionalidades completamente nuevas, las cuales se cotizarían por separado.</p>
+                            <p>Significa que puedes solicitar actualizaciones de texto, imágenes, colores, o la creación de nuevas secciones informativas. Lo que no incluye son funcionalidades nuevas (como sistemas de reserva, e-commerce, etc.), ya que no forman parte de nuestro servicio.</p>
                         </div>
                     </div>
                     <div class="faq-item">
                         <div class="faq-question">
-                            <h3>¿Qué pasa si no estoy satisfecho con el diseño?</h3>
+                            <h3>¿Puedo solicitar cambios en mi web una vez esté terminada?</h3>
+                            <h3>¿Trabajan con todo tipo de páginas web?</h3>
                             <iconify-icon class="faq-icon" icon="ph:plus-bold"></iconify-icon>
                         </div>
                         <div class="faq-answer">
-                            <p>Tu satisfacción es nuestra prioridad. Trabajamos con un proceso de revisiones y feedback constante durante la construcción. Nuestra garantía de satisfacción asegura que seguiremos trabajando hasta alcanzar el resultado que esperas.</p>
+                            <p>¡Por supuesto! Nuestro plan incluye cambios ilimitados. Puedes solicitar actualizaciones de texto, imágenes o pequeños ajustes de diseño a través de nuestra plataforma de soporte en cualquier momento.</p>
+                            <p>Nos especializamos únicamente en la creación y mantenimiento de páginas web informativas y de marketing. No trabajamos con tiendas en línea (e-commerce) ni con el desarrollo de plataformas o aplicaciones web a medida.</p>
                         </div>
                     </div>
-                </div>
-            </section>
-
+                    <div class="faq-item">
+@ -343,74 +304,74 @@
             <section class="final-cta-section" id="final-cta-section">
                 <div class="final-cta-grid-bg"></div>
                 <div class="final-cta-content">
+                    <h2>¿Listo para empezar tu proyecto?</h2>
+                    <p>Hablemos hoy mismo. Sin compromisos, solo soluciones.</p>
                     <h2>Inicia tu viaje en la plataforma.</h2>
                     <p>Crea tu cuenta y da el primer paso para tener una presencia web gestionada de forma profesional.</p>
                 </div>
+                <a href="https://app.cosmicaweb.com" class="magnetic-button main-cta-trigger">
                 <a href="https://app.cosmicaweb.com" class="magnetic-button">
                     <iconify-icon icon="ph:arrow-right-bold"></iconify-icon>
                 </a>
