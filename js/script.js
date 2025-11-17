@@ -72,8 +72,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const landingPageFeatureEl = document.getElementById('landing-page-feature');
         if (!minusBtn || !plusBtn || !lpCountSpan || !priceAmountEl || !landingPageFeatureEl) return;
 
-        let basePrice = 300000;
-        let landingPagePrice = 100000;
+        let basePrice = 89900;
+        let landingPagePrice = 20000;
         let lpCount = 0;
 
         function formatPrice(price) { return price.toLocaleString('es-CO'); }
