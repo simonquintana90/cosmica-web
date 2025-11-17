@@ -39,6 +39,7 @@
             <div class="nav-right">
                 <div class="nav-links">
                     <a href="#how-it-works">Cómo Funciona</a>
+                    <a href="#portfolio-section">Proyectos</a>
                     <a href="#pricing-section">Precios</a>
                     <a href="#about-section">Sobre Nosotros</a>
                 </div>
@@ -58,6 +59,7 @@
         <div class="mobile-nav-menu">
             <div class="nav-links">
                 <a href="#how-it-works">Cómo Funciona</a>
+                <a href="#portfolio-section">Proyectos</a>
                 <a href="#pricing-section">Precios</a>
                 <a href="#about-section">Sobre Nosotros</a>
             </div>
@@ -198,6 +200,57 @@
                 </div>
             </section>
 
+            <section class="portfolio-section" id="portfolio-section">
+                <div class="portfolio-header">
+                    <h2>Nuestro Trabajo Habla por Sí Mismo.</h2>
+                    <p>Cada proyecto es una colaboración. Mira cómo hemos ayudado a otros clientes a transformar su presencia digital.</p>
+                </div>
+                
+                <div class="portfolio-container">
+                    <div class="portfolio-tabs">
+                        <button class="portfolio-tab-btn active" data-tab="galla">
+                            <span>Galla Abogados</span>
+                        </button>
+                        <button class="portfolio-tab-btn" data-tab="golfito">
+                            <span>Golfito y Mas</span>
+                        </button>
+                    </div>
+                    
+                    <div class="portfolio-content-wrapper">
+                        
+                        <div class="portfolio-content-item active" id="galla">
+                            <div class="portfolio-item-image">
+                                <img src="assets/Hero-galla.png" alt="Vista previa del proyecto Galla Abogados">
+                            </div>
+                            <div class="portfolio-item-text">
+                                <h3>Galla Abogados</h3>
+                                <p><strong>El Desafío:</strong> Galla necesitaba un sitio web que proyectara la seriedad y confianza de una firma de abogados de primer nivel, y que al mismo tiempo fuera fácil de navegar para sus clientes.</p>
+                                <p><strong>La Solución:</strong> Diseñamos una identidad visual limpia y profesional. Creamos una arquitectura de información clara, destacando sus áreas de práctica y permitiendo a los usuarios agendar citas fácilmente. Todo gestionado desde nuestro portal de cliente.</p>
+                                <a href="https://www.gallaabogados.com/" target="_blank" class="hero-cta-button">
+                                    <span>Ver Sitio en Vivo</span>
+                                    <iconify-icon icon="ph:arrow-right-bold"></iconify-icon>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="portfolio-content-item" id="golfito">
+                            <div class="portfolio-item-image">
+                                <img src="assets/Hero-golfito.png" alt="Vista previa del proyecto Golfito y Mas">
+                            </div>
+                            <div class="portfolio-item-text">
+                                <h3>Golfito y Mas</h3>
+                                <p><strong>El Desafío:</strong> El cliente buscaba una plataforma vibrante para mostrar sus servicios de ocio y golf, que fuera visualmente atractiva y que permitiera actualizaciones constantes de eventos y promociones.</p>
+                                <p><strong>La Solución:</strong> Desarrollamos un sitio dinámico, enfocado en imágenes de alta calidad y una experiencia de usuario divertida. A través del portal Cósmica, el cliente puede solicitar cambios de sus eventos semanalmente, manteniendo la web siempre fresca.</p>
+                                <a href="https://www.golfitoymas.com/" target="_blank" class="hero-cta-button">
+                                    <span>Ver Sitio en Vivo</span>
+                                    <iconify-icon icon="ph:arrow-right-bold"></iconify-icon>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
             <section class="guarantee-section">
                 <div class="guarantee-container">
                     <div class="guarantee-content">
@@ -214,7 +267,7 @@
                 <div class="pricing-card">
                     <div class="price-display">
                         <h3 class="price-amount" id="main-price-amount">$89.900<span>/mes</span></h3>
-                        <p class="price-setup-fee">Sin contratos a términos fijos.</p>
+                        <p class="price-setup-fee">Sin contratos de permanencia.</p>
                     </div>
                     <div class="pricing-addons">
                         <div class="addon-item">
@@ -324,6 +377,7 @@
                     <h3>Navegación</h3>
                     <ul class="footer-links">
                         <li><a href="#how-it-works">Cómo Funciona</a></li>
+                        <li><a href="#portfolio-section">Proyectos</a></li>
                         <li><a href="#pricing-section">Precios</a></li>
                         <li><a href="#about-section">Sobre Nosotros</a></li>
                     </ul>
@@ -347,31 +401,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     
     <script src="js/script.js"></script>
-
-    <vapi-widget
-        public-key="c5e3fd11-6fe3-4c1d-b761-6446d63df120"
-        assistant-id="6a588cc4-3fd1-4e77-b29d-1dfb6e002946"
-        mode="chat"
-        theme="dark"
-        base-bg-color="#000000"
-        accent-color="#2563EB"
-        cta-button-color="#000000"
-        cta-button-text-color="#ffffff"
-        border-radius="large"
-        size="compact"
-        position="bottom-right"
-        title="¿Tienes dudas?"
-        start-button-text="Start"
-        end-button-text="End Call"
-        cta-subtitle="Te ayudamos a resolver tus dudas."
-        chat-first-message="Hola, soy Simón del equipo de soporte de Cósmica. ¿Cómo puedo ayudarte hoy?"
-        chat-placeholder="Escribe tu mensaje..."
-        voice-show-transcript="true"
-        consent-required="true"
-        consent-title="Terms and conditions"
-        consent-content="By clicking "Agree," and each time I interact with this AI agent, I consent to the recording, storage, and sharing of my communications with third-party service providers, and as otherwise described in our Terms of Service."
-        consent-storage-key="vapi_widget_consent"
-    ></vapi-widget>
-    <script src="https://unpkg.com/@vapi-ai/client-sdk-react/dist/embed/widget.umd.js" async type="text/javascript"></script>
+    
     </body>
 </html>

@@ -289,21 +289,21 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* --- Secciones Generales --- */
-.portal-feature-section, .usp-section, .how-it-works-section, .about-manifesto-section, .reviews-section, .guarantee-section, .pricing-section, .faq-section, .final-cta-section, .legal-content-section {
+.portal-feature-section, .usp-section, .how-it-works-section, .about-manifesto-section, .reviews-section, .guarantee-section, .pricing-section, .faq-section, .final-cta-section, .legal-content-section, .portfolio-section {
     padding: 8rem 2rem;
 }
 @media (max-width: 767px) {
-    .portal-feature-section, .usp-section, .how-it-works-section, .about-manifesto-section, .reviews-section, .guarantee-section, .pricing-section, .faq-section, .final-cta-section, .legal-content-section {
+    .portal-feature-section, .usp-section, .how-it-works-section, .about-manifesto-section, .reviews-section, .guarantee-section, .pricing-section, .faq-section, .final-cta-section, .legal-content-section, .portfolio-section {
         padding: 5rem 1.5rem;
     }
 }
-.portal-feature-header, .usp-header, .how-it-works-header, .reviews-header, .pricing-header, .faq-header, .about-manifesto-header {
+.portal-feature-header, .usp-header, .how-it-works-header, .reviews-header, .pricing-header, .faq-header, .about-manifesto-header, .portfolio-header {
     text-align: center; max-width: 750px; margin: 0 auto 5rem auto;
 }
-.portal-feature-header h2, .usp-header h2, .how-it-works-header h2, .reviews-header h2, .pricing-header h2, .faq-header h2, .about-manifesto-header h2 {
+.portal-feature-header h2, .usp-header h2, .how-it-works-header h2, .reviews-header h2, .pricing-header h2, .faq-header h2, .about-manifesto-header h2, .portfolio-header h2 {
     font-size: clamp(2.5rem, 5vw, 3.5rem); line-height: 1.2; margin-bottom: 1rem;
 }
-.portal-feature-header p, .usp-header p, .how-it-works-header p, .reviews-header p, .pricing-header p, .faq-header p, .about-manifesto-header p {
+.portal-feature-header p, .usp-header p, .how-it-works-header p, .reviews-header p, .pricing-header p, .faq-header p, .about-manifesto-header p, .portfolio-header p {
     font-size: clamp(1rem, 2.5vw, 1.125rem); color: var(--text-secondary-dark); line-height: 1.6; max-width: 600px; margin: 0 auto;
 }
 
@@ -435,6 +435,140 @@ h1, h2, h3, h4, h5, h6 {
 .google-logo { width: 24px; height: 24px; }
 @media (max-width: 767px) { .review-card { width: 300px; padding: 1.5rem; } .reviews-marquee-row { gap: 1.5rem; } }
 
+
+/* --- (NUEVO) Portfolio "Case Study" Section --- */
+.portfolio-section {
+    padding-top: 0;
+    background-color: var(--bg-light); /* <-- CAMBIO: Fondo de la página */
+}
+
+.portfolio-container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.portfolio-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.portfolio-tab-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background-color: var(--card-bg-light);
+    border: 1px solid var(--border-light);
+    border-radius: 999px;
+    padding: 0.75rem 1.5rem;
+    font-family: var(--font-body);
+    font-size: 1rem; /* <-- CAMBIO: Un poco más grande para que solo el texto se vea bien */
+    font-weight: 700;
+    color: var(--text-secondary-dark);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 0.6;
+}
+
+.portfolio-tab-btn img {
+    /* Esta regla ya no aplica, pero la dejamos por si se añaden de nuevo */
+    height: 20px;
+    filter: grayscale(1);
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+
+.portfolio-tab-btn:hover {
+    background-color: #fff;
+    border-color: #ccc;
+    opacity: 1;
+}
+
+.portfolio-tab-btn.active {
+    background-color: var(--accent-light);
+    border-color: var(--accent);
+    color: var(--accent-darker);
+    opacity: 1;
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.1);
+}
+
+.portfolio-tab-btn.active img {
+    filter: grayscale(0);
+    opacity: 1;
+}
+
+.portfolio-content-wrapper {
+    position: relative;
+    background-color: var(--card-bg-light);
+    border-radius: 24px;
+    border: 1px solid var(--border-light);
+    box-shadow: 0 20px 40px -15px rgba(0,0,0,0.08);
+    overflow: hidden;
+}
+
+.portfolio-content-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    padding: 3rem;
+    display: none; /* Oculto por defecto */
+}
+
+.portfolio-content-item.active {
+    display: grid; /* Mostrado cuando está activo */
+}
+
+.portfolio-item-image img {
+    width: 100%;
+    height: auto;
+    /* aspect-ratio: 4 / 3; */  /* <-- CORRECCIÓN: ELIMINADO */
+    /* object-fit: cover; */    /* <-- CORRECCIÓN: ELIMINADO */
+    border-radius: 12px;
+    border: 1px solid var(--border-light);
+    display: block; /* Buena práctica para imágenes */
+}
+
+.portfolio-item-text h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.portfolio-item-text p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-secondary-dark);
+    margin-bottom: 1.5rem;
+}
+
+.portfolio-item-text .hero-cta-button {
+    margin-top: 1rem;
+}
+
+@media (max-width: 900px) {
+    .portfolio-content-item {
+        grid-template-columns: 1fr;
+        padding: 2rem;
+        gap: 2rem;
+    }
+    .portfolio-item-image {
+        order: -1; /* Muestra la imagen primero en móvil */
+    }
+}
+
+@media (max-width: 600px) {
+    .portfolio-tabs {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .portfolio-tab-btn {
+        justify-content: center;
+    }
+}
+/* --- Fin de estilos de Portafolio --- */
+
+
 /* Guarantee Section */
 .guarantee-section {
     background-color: #F3F4F6;
@@ -505,7 +639,9 @@ h1, h2, h3, h4, h5, h6 {
 .about-manifesto-header h2,
 .portal-feature-header h2,
 .guarantee-title,
-.final-cta-content h2 {
+.final-cta-content h2,
+.portfolio-header h2,
+.portfolio-item-text h3 {
     text-wrap: balance;
 }
 
@@ -520,7 +656,9 @@ h1, h2, h3, h4, h5, h6 {
 .guarantee-text,
 .faq-answer p,
 .final-cta-content p,
-.footer-column p {
+.footer-column p,
+.portfolio-header p,
+.portfolio-item-text p {
     text-wrap: pretty;
 }
 
@@ -601,23 +739,4 @@ h1, h2, h3, h4, h5, h6 {
 .legal-container p {
     line-height: 1.8;
     color: var(--text-secondary-dark);
-}
-
-/* --- Corrección de Scroll para Widget de Vapi --- */
-div[data-testid="chat-window"] > div:first-child {
-    overflow-y: auto !important;
-    max-height: 50vh !important;
-}
-
-div[data-testid="chat-window"] > div:first-child::-webkit-scrollbar {
-    width: 6px;
-}
-
-div[data-testid="chat-window"] > div:first-child::-webkit-scrollbar-track {
-    background: #333;
-}
-
-div[data-testid="chat-window"] > div:first-child::-webkit-scrollbar-thumb {
-    background-color: var(--accent);
-    border-radius: 6px;
 }

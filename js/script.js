@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
         initMobileMenu();
         initPricingCounter();
         initFAQAccordion();
+        initPortfolioTabs(); // <-- FUNCIÓN AÑADIDA
     }
 
     /**
@@ -72,17 +73,22 @@ document.addEventListener('DOMContentLoaded', () => {
         const landingPageFeatureEl = document.getElementById('landing-page-feature');
         if (!minusBtn || !plusBtn || !lpCountSpan || !priceAmountEl || !landingPageFeatureEl) return;
 
-        let basePrice = 89900;
-        let landingPagePrice = 20000;
+        let basePrice = 89900; // Precio base correcto
+        let landingPagePrice = 20000; // Precio LP correcto
         let lpCount = 0;
 
         function formatPrice(price) { return price.toLocaleString('es-CO'); }
         
         function updatePriceAndFeatures() {
+            const initialPriceText = priceAmountEl.textContent.replace(/\D/g, '');
+            const initialPrice = parseInt(initialPriceText) || basePrice;
+            
             const currentPrice = parseInt(priceAmountEl.textContent.replace(/\D/g, '')) || basePrice;
             const targetPrice = basePrice + (lpCount * landingPagePrice);
             
-            gsap.to({ val: currentPrice }, { 
+            const effectiveCurrentPrice = (lpCount === 0 && currentPrice !== basePrice) ? initialPrice : currentPrice;
+
+            gsap.to({ val: effectiveCurrentPrice }, { 
                 duration: 0.5, 
                 val: targetPrice, 
                 ease: 'power3.out', 
@@ -104,6 +110,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         }
+        
+        updatePriceAndFeatures(); // Asegura el precio inicial correcto
 
         plusBtn.addEventListener('click', () => { lpCount++; updatePriceAndFeatures(); });
         minusBtn.addEventListener('click', () => { if (lpCount > 0) { lpCount--; updatePriceAndFeatures(); } });
@@ -135,6 +143,35 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // (NUEVA) FUNCIÓN PARA PESTAÑAS DE PORTAFOLIO
+    function initPortfolioTabs() {
+        const tabButtons = gsap.utils.toArray('.portfolio-tab-btn');
+        const contentItems = gsap.utils.toArray('.portfolio-content-item');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const targetTabId = button.dataset.tab;
+
+                // Quitar clase 'active' de todos los botones y contenidos
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                contentItems.forEach(item => item.classList.remove('active'));
+
+                // Añadir clase 'active' al botón clickeado
+                button.classList.add('active');
+                
+                // Encontrar y mostrar el contenido correspondiente
+                const targetContent = document.getElementById(targetTabId);
+                if (targetContent) {
+                    targetContent.classList.add('active');
+                    
+                    // (Opcional) Animación de entrada para el contenido
+                    gsap.from(targetContent, { opacity: 0, y: 20, duration: 0.5, ease: 'power3.out' });
+                }
+            });
+        });
+    }
+
+
     // --- FUNCIONES DE MEJORAS VISUALES Y ANIMACIONES ---
 
     function initLenis() {
@@ -144,8 +181,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     function initScrollAnimations() {
-        // Animaciones de entrada para secciones
-        gsap.utils.toArray('.portal-feature-header, .usp-header, .how-it-works-header, .reviews-header, .pricing-header, .faq-header, .guarantee-content h2, .guarantee-content p, .final-cta-content h2, .final-cta-content p, .social-proof-section').forEach(el => {
+        // Animaciones de entrada para secciones (PORTAFOLIO AÑADIDO)
+        gsap.utils.toArray('.portal-feature-header, .usp-header, .how-it-works-header, .reviews-header, .pricing-header, .faq-header, .guarantee-content h2, .guarantee-content p, .final-cta-content h2, .final-cta-content p, .social-proof-section, .portfolio-header').forEach(el => {
             gsap.from(el, { scrollTrigger: { trigger: el, start: "top 85%" }, opacity: 0, y: 50, duration: 1, ease: "power3.out" });
         });
         
@@ -173,9 +210,24 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
+        // (NUEVO) Animación para el contenedor del portafolio
+        gsap.from('.portfolio-container', { 
+            scrollTrigger: { 
+                trigger: '.portfolio-container', 
+                start: "top 85%" 
+            }, 
+            opacity: 0, 
+            y: 50, 
+            duration: 1, 
+            ease: "power3.out" 
+        });
+
+
         // Marquee de reseñas (LÓGICA SIMPLIFICADA)
         const marqueeRow = document.querySelector('.reviews-marquee-row');
         if (marqueeRow) {
+            marqueeRow.innerHTML = ''; // Limpia
+            
             const reviews = [
                 { quote: "Excelente servicio. Lo dejé todo en sus manos e incrementaron mis ventas.", author: "Gabriel A." },
                 { quote: "Muy buen servicio al cliente y conocimiento.", author: "Jose Afanador" },
